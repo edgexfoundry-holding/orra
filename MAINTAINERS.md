@@ -4,7 +4,7 @@ Maintainers
 | Name                      | GitHub        | Chat (Slack)          | email                           |
 |---------------------------|---------------|-----------------------|---------------------------------|
 | Brad Corrion (Intel)      | [bcorrion](https://github.com/bcorrion) | @Brad Corrion (Intel) | bradley.w.corrion@intel.com     |
-| Glen Darling (IBM)        | [megamosquito](https://github.com/megamosquito) | @mosquito             | glendarling@us.ibm.com          |
+| Glen Darling (IBM)        | [TheMosquito](https://github.com/themosquito) | @mosquito             | glendarling@us.ibm.com          |
 | Henry Lau (HP Inc)        | [henrylausd](https://github.com/henrylausd) | @Henry Lau            | henry.lau@hp.com                |
 | Joe Pearson (IBM))        | [joewxboy](https://github.com/joewxboy) | @Joe Pearson          | joe.pearson@us.ibm.com          |
 

@@ -2,7 +2,7 @@
 
 # Open Retail Reference Architecture (ORRA)
 
-ORRA is sub-project of EdgeX Foundry. More information can be found on the [ORRA wiki page](https://wiki.edgexfoundry.org/display/FA/Open+Retail+Reference+Architecture).
+ORRA is a sub-project of EdgeX Foundry. More information can be found on the [ORRA wiki page](https://wiki.edgexfoundry.org/display/FA/Open+Retail+Reference+Architecture).
 
 ## License <a name="license"></a>
 
