@@ -49,7 +49,7 @@ cd orra/demos/SDO-OH-EXF-dev-simple
 hzn exchange service publish -P -f configuration/service.json
 hzn exchange pattern publish -f configuration/pattern.json
 ```
-* Create the Docker volumes, temporary and configuration folders, copy the EdgeX Foundry service configuration patterns to their expected location:
+* Create the temporary and configuration folders, copy the EdgeX Foundry service configuration patterns to their expected location:
 ``` shell
 mkdir -p /var/run/edgex/logs
 mkdir -p /var/run/edgex/data
@@ -60,24 +60,38 @@ chmod -R a+rwx /var/run/edgex
 chmod -R a+rwx /root/res
 cp res/* /root/res
 ```
-* Publish the updated node policy:
-``` shell
-hzn unregister -f
-hzn register --policy=configuration/node.policy
-```
-* Publish the deployment policy, which should immediately cause an agreement to be negotiated with your node:
+* Publish the deployment policy:
 ``` shell
 hzn exchange deployment addpolicy -f configuration/deployment.policy.json myorg/policy-com.github.joewxboy.horizon.edgex_1.0.1
 ```
-* Watch for an agreement to be formed:
+
+### Step Four: Edit and run the SDO script
+
+* Go back to your starting folder:
 ``` shell
-watch hzn agreement list
+cd ../../..
 ```
-* Watch for the containers to be running:
+* Edit the `test-sdo.sh` script to change the following lines:
+    * Approximately at line 203: `hzn voucher import /var/sdo/voucher.json --policy node.policy.json`
+    * Change the policy file to `orra/demos/SDO-OH-EXF-dev-simple/configuration/node.policy`
+    * Approximately at line 210: `/usr/sdo/bin/owner-boot-device ibm.helloworld`
+    * Change the pattern from "ibm.helloworld" to `com.github.joewxboy.horizon.edgex`
+* Run the test script:
 ``` shell
-watch docker ps
+./test-sdo.sh
 ```
 * Make a request to the EdgeX endpoint for the Random Number Virtual Device:
 ``` shell
 watch "curl --silent http://localhost:48080/api/v1/event | jq .[0].readings[0].value"
+```
+
+### Step Five: Optionally, clean up
+
+* To unregister the service:
+``` shell
+hzn unregister -f
+```
+* To remove Agent and Management Hub
+``` shell
+./deploy-mgmt-hub.sh -S
 ```
