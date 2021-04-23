@@ -90,6 +90,7 @@ cd ../../..
 ``` shell
 watch "curl --silent http://localhost:48080/api/v1/event | jq .[0].readings[0].value"
 ```
+> NOTE: If the initial response is `null`, then the service has not yet run the first time.  Give it up to 20 seconds or so before expecting to see an Integer value returned.  Thereafter, it should update every 5-10 seconds.
 
 ### Step Five: Optionally, clean up
 
