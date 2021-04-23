@@ -41,7 +41,9 @@ export HZN_FSS_CSSURL=http://<local-IP-address-here>:9443/
 
 ### Step Three: Configure and publish the definition files for the EXF Service
 
-* Clone the EdgeX Foundry integration repository and navigate to the `configs` folder:
+> NOTE: this is based on the [Open Horizon / EdgeX Foundry integration project](https://github.com/edgexfoundry-holding/open-horizon-integration/blob/master/hub/README.md).
+
+* Clone the [ORRA repository](https://github.com/edgexfoundry-holding/orra) and navigate to the SDO-OH-EXF demo folder:
 ``` shell
 git clone https://github.com/edgexfoundry-holding/orra.git
 cd orra/demos/SDO-OH-EXF-dev-simple
