@@ -14,6 +14,8 @@ This is a simple demonstration geared towards developers.  It begins with the Op
 
 ### Step One: Prepare the OS
 
+> NOTE: Watch the video of [setting up a VM with VirtualBox](https://www.youtube.com/watch?v=YQqFnRNL98s) if you haven't done that before or would like a refresher.
+
 * Boot the VM and log in.  Become root with `sudo -i`.
 * **Optional** - Update the OS and install any pre-requisites
 ``` shell
@@ -24,7 +26,7 @@ apt-get -y install jq
 
 ### Step Two: Install Open Horizon
 
-> If Open Horizon is already installed and configured properly, skip step two.
+> If Open Horizon is already installed and configured properly, skip step two and go straight to step three instead.
 
 * **Optional** - Determine the VM's local IP address and `export HZN_LISTEN_IP=<local-IP-address-here>` if the network connection is bridged.  If the IP address is accessible outside of the VM, then you will be able to connect to any exposed ports from outside the VM.  Without this step, the services will only be available inside the VM.
 * Install the all-in-one Open Horizon instance by following [these instructions](https://github.com/open-horizon/devops/tree/master/mgmt-hub).
