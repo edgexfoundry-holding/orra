@@ -28,7 +28,7 @@ apt-get -y upgrade
 apt-get -y install jq
 ```
 
-### Step Two: Install Open Horizon
+### Step Two: Install Open Horizon Management Hub and Agent
 
 > If Open Horizon is already installed and configured properly, skip step two and go straight to step three instead.
 > NOTE: This step will install docker and docker-compose if they are not already present.
