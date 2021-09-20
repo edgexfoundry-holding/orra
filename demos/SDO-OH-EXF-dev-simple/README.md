@@ -85,8 +85,8 @@ When the all-in-one Open Horizon instance is run in Step Two, it creates a local
 cd ../../..
 ```
 * Edit the `test-sdo.sh` script that came with the all-in-one Open Horizon install and change the following lines:
-    * Towards the end, the line: `hzn voucher import /var/sdo/voucher.json --policy node.policy.json`
-    * Adjust the path and name of the policy file to `hzn voucher import /var/sdo/voucher.json --policy orra/demos/SDO-OH-EXF-dev-simple/configuration/node.policy`
+    * Towards the end, the line: `hzn sdo voucher import /var/sdo/voucher.json --policy node.policy.json`
+    * Adjust the path and name of the policy file to `hzn sdo voucher import /var/sdo/voucher.json --policy orra/demos/SDO-OH-EXF-dev-simple/configuration/node.policy`
     * A few lines later find this line: `/usr/sdo/bin/owner-boot-device ibm.helloworld`
     * Change the pattern from "ibm.helloworld" to `com.github.joewxboy.horizon.edgex`
 * Run the test script:
