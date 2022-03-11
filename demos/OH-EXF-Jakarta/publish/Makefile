@@ -1,10 +1,9 @@
-# Checks required environment variables
+# Include base Makefile
 include make/base.mk
 
 export ARCH ?= $(shell hzn architecture)
 
-SUBPROJECTS = redis consul mqtt-broker
-#SUBPROJECTS = asc-mqtt consul core-command core-metadata device-mqtt device-onvif-camera edgex-ui mqtt-broker redis
+SUBPROJECTS = redis consul mqtt-broker core-command core-metadata device-mqtt edgex-ui asc-mqtt device-onvif-camera
 PATTERNS = edgex-jakarta
 
 .PHONY: all publish $(SUBPROJECTS:%=publish-%) publish-patterns $(PATTERNS:%=publish-pattern-%)

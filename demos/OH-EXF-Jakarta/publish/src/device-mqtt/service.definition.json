@@ -18,7 +18,14 @@
     "deployment": {
         "services": {
             "${SERVICE_NAME}": {
-                "image": "${DOCKER_IMAGE_BASE}:${SERVICE_VERSION}"
+                "image": "${DOCKER_IMAGE_BASE}:${SERVICE_VERSION}",
+                "binds": [
+                    "$APP_BIND_HORIZON/res/device-mqtt/:/res/"
+                ],
+                "ports": [{
+                    "HostIP": "127.0.0.1",
+                    "HostPort": "59982:59982/tcp"
+                }]
             }
         }
     }

@@ -6,3 +6,4 @@ demos/.DS_Store
 .vscode/
 **/.env
 .hzn.json.tmp.mk
+device-onvif-camera/src
