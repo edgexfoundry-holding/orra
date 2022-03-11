@@ -3,7 +3,7 @@ include make/base.mk
 
 export ARCH ?= $(shell hzn architecture)
 
-SUBPROJECTS = redis consul
+SUBPROJECTS = redis consul mqtt-broker
 #SUBPROJECTS = asc-mqtt consul core-command core-metadata device-mqtt device-onvif-camera edgex-ui mqtt-broker redis
 PATTERNS = edgex-jakarta
 

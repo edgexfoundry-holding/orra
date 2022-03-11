@@ -9,7 +9,7 @@
     "requiredServices": [
     ],
     "userInput": [
-        { "name": "EDGEX_SECURITY_SECRET_STORE", "type": "boolean", "defaultValue": false},
+        { "name": "EDGEX_SECURITY_SECRET_STORE", "type": "boolean", "defaultValue": "false"},
         { "name": "Registry_Host", "type": "string",  "defaultValue": "edgex-core-consul" },
         { "name": "Clients_Metadata_Host", "type": "string",  "defaultValue": "edgex-core-metadata" },
         { "name": "Clients_RulesEngine_Host", "type": "string",  "defaultValue": "edgex-kuiper" },
@@ -18,7 +18,12 @@
     "deployment": {
         "services": {
             "${SERVICE_NAME}": {
-                "image": "${DOCKER_IMAGE_BASE}:${SERVICE_VERSION}"
+                "image": "${DOCKER_IMAGE_BASE}:${SERVICE_VERSION}",
+                "command": ["/usr/sbin/mosquitto", "-c", "/mosquitto-no-auth.conf"],
+                "ports": [{
+                    "HostIP": "0.0.0.0",
+                    "HostPort": "1883/tcp"
+                }]
             }
         }
     }

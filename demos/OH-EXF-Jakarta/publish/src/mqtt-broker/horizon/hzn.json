@@ -1,8 +1,8 @@
 {
     "MetadataVars": {
         "IMAGE_NAME": "mqtt-broker",
-        "DOCKER_IMAGE_BASE": "$(DOCKER_BASE)/$(EDGE_OWNER).$(EDGE_DEPLOY).$(IMAGE_NAME)",
+        "DOCKER_IMAGE_BASE": "eclipse-mosquitto",
         "SERVICE_NAME": "$(EDGE_OWNER).$(EDGE_DEPLOY).$(IMAGE_NAME)",
-        "SERVICE_VERSION": "2.1"
+        "SERVICE_VERSION": "2.0.12"
     }
 }
