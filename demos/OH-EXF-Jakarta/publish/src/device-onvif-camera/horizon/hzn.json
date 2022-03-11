@@ -1,0 +1,8 @@
+{
+    "MetadataVars": {
+        "IMAGE_NAME": "device-onvif-camera",
+        "DOCKER_IMAGE_BASE": "$(DOCKER_BASE)/$(EDGE_OWNER).$(EDGE_DEPLOY).$(IMAGE_NAME)",
+        "SERVICE_NAME": "$(EDGE_OWNER).$(EDGE_DEPLOY).$(IMAGE_NAME)",
+        "SERVICE_VERSION": "2.1"
+    }
+}

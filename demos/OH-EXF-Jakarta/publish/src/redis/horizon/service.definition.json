@@ -1,0 +1,27 @@
+{
+    "org": "${HZN_ORG_ID}",
+    "label": "${SERVICE_NAME}-${ARCH}",
+    "url": "${SERVICE_NAME}",
+    "version": "${SERVICE_VERSION}",
+    "arch": "${ARCH}",
+    "public": false,
+    "sharable": "singleton",
+    "requiredServices": [
+    ],
+    "userInput": [
+    ],
+    "deployment": {
+        "services": {
+            "${SERVICE_NAME}": {
+                "image": "${DOCKER_IMAGE_BASE}:${SERVICE_VERSION}",
+                "binds": [
+                    "db-data:/data:rw"
+                ],
+                "ports": [{
+                    "HostIP": "127.0.0.1",
+                    "HostPort": "6379:6379/tcp"
+                }]
+            }
+        }
+    }
+}
