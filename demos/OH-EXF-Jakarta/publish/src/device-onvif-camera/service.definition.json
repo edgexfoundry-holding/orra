@@ -7,6 +7,24 @@
     "public": false,
     "sharable": "singleton",
     "requiredServices": [
+        {
+            "org": "${HZN_ORG_ID}",
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.consul",
+            "version": "1.10.3",
+            "arch": "${ARCH}"
+        },
+        {
+            "org": "${HZN_ORG_ID}",
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.redis",
+            "version": "6.2.6",
+            "arch": "${ARCH}"
+        },
+        {
+            "org": "${HZN_ORG_ID}",
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-metadata",
+            "version": "2.1.0",
+            "arch": "${ARCH}"
+        }
     ],
     "userInput": [
         { "name": "CLIENTS_CORE_METADATA_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-metadata" },

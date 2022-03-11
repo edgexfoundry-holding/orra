@@ -6,16 +6,23 @@
     "arch": "${ARCH}",
     "public": false,
     "sharable": "singleton",
-    "requiredServices": [{
-        "org": "${HZN_ORG_ID}",
-        "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.consul",
-        "version": "1.10.3",
-        "arch": "${ARCH}"
-    },
+    "requiredServices": [
+        {
+            "org": "${HZN_ORG_ID}",
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.consul",
+            "version": "1.10.3",
+            "arch": "${ARCH}"
+        },
         {
             "org": "${HZN_ORG_ID}",
             "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.redis",
             "version": "6.2.6",
+            "arch": "${ARCH}"
+        },
+        {
+            "org": "${HZN_ORG_ID}",
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-metadata",
+            "version": "2.1.0",
             "arch": "${ARCH}"
         }
     ],
@@ -35,7 +42,7 @@
         "services": {
             "${SERVICE_NAME}": {
                 "image": "${DOCKER_IMAGE_BASE}:${SERVICE_VERSION}",
-                "command": ["/app-service-configurable", "-cp=consul.http://${EDGE_OWNER}.${EDGE_DEPLOY}.consul:8500", "--registry", "--confdir=/res"],
+                "command": ["-cp=consul.http://${EDGE_OWNER}.${EDGE_DEPLOY}.consul:8500", "--registry", "--confdir=/res"],
                 "ports": [
                     {
                         "HostIP": "127.0.0.1",
