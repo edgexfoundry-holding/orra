@@ -3,6 +3,6 @@
         "IMAGE_NAME": "redis",
         "DOCKER_IMAGE_BASE": "$(IMAGE_NAME)",
         "SERVICE_NAME": "$(EDGE_OWNER).$(EDGE_DEPLOY).$(IMAGE_NAME)",
-        "SERVICE_VERSION": "6.2.6-alpine"
+        "SERVICE_VERSION": "6.2.6"
     }
 }

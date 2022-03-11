@@ -13,7 +13,18 @@
     "deployment": {
         "services": {
             "${SERVICE_NAME}": {
-                "image": "${DOCKER_IMAGE_BASE}:${SERVICE_VERSION}"
+                "image": "${DOCKER_IMAGE_BASE}:${SERVICE_VERSION}",
+                "command": ["agent", "-ui", "-bootstrap", "-server", "-client", "0.0.0.0"],
+                "binds": [
+                    "consul-config:/consul/config:rw",
+                    "consul-data:/consul/data:rw"
+                ],
+                "ports": [
+                    {
+                        "HostIP": "127.0.0.1",
+                        "HostPort": "8500:8500/tcp"
+                    }
+                ]
             }
         }
     }
