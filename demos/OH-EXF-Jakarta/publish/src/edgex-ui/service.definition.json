@@ -7,18 +7,24 @@
     "public": false,
     "sharable": "singleton",
     "requiredServices": [
+        {
+            "org": "${HZN_ORG_ID}",
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-metadata",
+            "version": "2.1.0",
+            "arch": "${ARCH}"
+        }
     ],
     "userInput": [
-        { "name": "EDGEX_SECURITY_SECRET_STORE", "type": "boolean", "defaultValue": "false"},
-        { "name": "Registry_Host", "type": "string",  "defaultValue": "edgex-core-consul" },
-        { "name": "Clients_Metadata_Host", "type": "string",  "defaultValue": "edgex-core-metadata" },
-        { "name": "Clients_RulesEngine_Host", "type": "string",  "defaultValue": "edgex-kuiper" },
-        { "name": "Databases_Primary_Host", "type": "string",  "defaultValue": "edgex-redis" }
+        { "name": "EDGEX_SECURITY_SECRET_STORE", "type": "boolean", "defaultValue": "false" }
     ],
     "deployment": {
         "services": {
             "${SERVICE_NAME}": {
-                "image": "${DOCKER_IMAGE_BASE}:${SERVICE_VERSION}"
+                "image": "${DOCKER_IMAGE_BASE}:${SERVICE_VERSION}",
+                "ports": [{
+                    "HostIP": "0.0.0.0",
+                    "HostPort": "4000:4000/tcp"
+                }]
             }
         }
     }

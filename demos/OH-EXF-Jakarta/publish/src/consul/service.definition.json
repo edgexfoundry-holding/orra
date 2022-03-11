@@ -9,11 +9,6 @@
     "requiredServices": [
     ],
     "userInput": [
-        { "name": "EDGEX_SECURITY_SECRET_STORE", "type": "boolean", "defaultValue": "false"},
-        { "name": "Registry_Host", "type": "string",  "defaultValue": "edgex-core-consul" },
-        { "name": "Clients_Metadata_Host", "type": "string",  "defaultValue": "edgex-core-metadata" },
-        { "name": "Clients_RulesEngine_Host", "type": "string",  "defaultValue": "edgex-kuiper" },
-        { "name": "Databases_Primary_Host", "type": "string",  "defaultValue": "edgex-redis" }
     ],
     "deployment": {
         "services": {
@@ -21,8 +16,8 @@
                 "image": "${DOCKER_IMAGE_BASE}:${SERVICE_VERSION}",
                 "command": ["agent", "-ui", "-bootstrap", "-server", "-client", "0.0.0.0"],
                 "binds": [
-                    "consul-config:/consul/config:rw",
-                    "consul-data:/consul/data:rw"
+                    "${APP_BIND_HORIZON_DIR}/consul-config:/consul/config:rw",
+                    "${APP_BIND_HORIZON_DIR}/consul-data:/consul/data:rw"
                 ],
                 "ports": [
                     {

@@ -1,96 +1,96 @@
 {
-  "name": "pattern-$EDGE_OWNER.$EDGE_DEPLOY.edgex-jakarta",
+  "name": "pattern-${EDGE_OWNER}.${EDGE_DEPLOY}.edgex-jakarta",
   "label": "EdgeX Jakarta Services",
   "description": "Pattern for EdgeX Jakarta",
   "public": false,
   "services": [
     {
-      "serviceUrl": "$EDGE_OWNER.$EDGE_DEPLOY.asc-mqtt",
-      "serviceOrgid": "$HZN_ORG_ID",
-      "serviceArch": "$ARCH",
+      "serviceUrl": "${EDGE_OWNER}.${EDGE_DEPLOY}.redis",
+      "serviceOrgid": "${HZN_ORG_ID}",
+      "serviceArch": "${ARCH}",
       "serviceVersions": [
         {
-          "version": "TODO_USE_ENV_VARIABLES"
+          "version": "6.2.6"
         }
       ]
     },
     {
-      "serviceUrl": "$EDGE_OWNER.$EDGE_DEPLOY.consul",
-      "serviceOrgid": "$HZN_ORG_ID",
-      "serviceArch": "$ARCH",
+      "serviceUrl": "${EDGE_OWNER}.${EDGE_DEPLOY}.consul",
+      "serviceOrgid": "${HZN_ORG_ID}",
+      "serviceArch": "${ARCH}",
       "serviceVersions": [
         {
-          "version": "TODO_USE_ENV_VARIABLES"
+          "version": "1.10.3"
         }
       ]
     },
     {
-      "serviceUrl": "$EDGE_OWNER.$EDGE_DEPLOY.core-command",
-      "serviceOrgid": "$HZN_ORG_ID",
-      "serviceArch": "$ARCH",
+      "serviceUrl": "${EDGE_OWNER}.${EDGE_DEPLOY}.mqtt-broker",
+      "serviceOrgid": "${HZN_ORG_ID}",
+      "serviceArch": "${ARCH}",
       "serviceVersions": [
         {
-          "version": "TODO_USE_ENV_VARIABLES"
+          "version": "2.0.12"
         }
       ]
     },
     {
-      "serviceUrl": "$EDGE_OWNER.$EDGE_DEPLOY.core-metadata",
-      "serviceOrgid": "$HZN_ORG_ID",
-      "serviceArch": "$ARCH",
+      "serviceUrl": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-metadata",
+      "serviceOrgid": "${HZN_ORG_ID}",
+      "serviceArch": "${ARCH}",
       "serviceVersions": [
         {
-          "version": "TODO_USE_ENV_VARIABLES"
+          "version": "2.1.0"
         }
       ]
     },
     {
-      "serviceUrl": "$EDGE_OWNER.$EDGE_DEPLOY.device-mqtt",
-      "serviceOrgid": "$HZN_ORG_ID",
-      "serviceArch": "$ARCH",
+      "serviceUrl": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-command",
+      "serviceOrgid": "${HZN_ORG_ID}",
+      "serviceArch": "${ARCH}",
       "serviceVersions": [
         {
-          "version": "TODO_USE_ENV_VARIABLES"
+          "version": "2.1.0"
         }
       ]
     },
     {
-      "serviceUrl": "$EDGE_OWNER.$EDGE_DEPLOY.device-onvif-camera",
-      "serviceOrgid": "$HZN_ORG_ID",
-      "serviceArch": "$ARCH",
+      "serviceUrl": "${EDGE_OWNER}.${EDGE_DEPLOY}.device-mqtt",
+      "serviceOrgid": "${HZN_ORG_ID}",
+      "serviceArch": "${ARCH}",
       "serviceVersions": [
         {
-          "version": "TODO_USE_ENV_VARIABLES"
+          "version": "2.1.0"
         }
       ]
     },
     {
-      "serviceUrl": "$EDGE_OWNER.$EDGE_DEPLOY.edgex-ui",
-      "serviceOrgid": "$HZN_ORG_ID",
-      "serviceArch": "$ARCH",
+      "serviceUrl": "${EDGE_OWNER}.${EDGE_DEPLOY}.asc-mqtt",
+      "serviceOrgid": "${HZN_ORG_ID}",
+      "serviceArch": "${ARCH}",
       "serviceVersions": [
         {
-          "version": "TODO_USE_ENV_VARIABLES"
+          "version": "2.1.0"
         }
       ]
     },
     {
-      "serviceUrl": "$EDGE_OWNER.$EDGE_DEPLOY.mqtt-broker",
-      "serviceOrgid": "$HZN_ORG_ID",
-      "serviceArch": "$ARCH",
+      "serviceUrl": "${EDGE_OWNER}.${EDGE_DEPLOY}.device-onvif-camera",
+      "serviceOrgid": "${HZN_ORG_ID}",
+      "serviceArch": "${ARCH}",
       "serviceVersions": [
         {
-          "version": "TODO_USE_ENV_VARIABLES"
+          "version": "0.0.0"
         }
       ]
     },
     {
-      "serviceUrl": "$EDGE_OWNER.$EDGE_DEPLOY.redis",
-      "serviceOrgid": "$HZN_ORG_ID",
-      "serviceArch": "$ARCH",
+      "serviceUrl": "${EDGE_OWNER}.${EDGE_DEPLOY}.edgex-ui",
+      "serviceOrgid": "${HZN_ORG_ID}",
+      "serviceArch": "${ARCH}",
       "serviceVersions": [
         {
-          "version": "TODO_USE_ENV_VARIABLES"
+          "version": "2.1.0"
         }
       ]
     }

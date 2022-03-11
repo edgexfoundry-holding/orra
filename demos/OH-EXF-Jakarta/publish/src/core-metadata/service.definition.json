@@ -7,18 +7,42 @@
     "public": false,
     "sharable": "singleton",
     "requiredServices": [
+        {
+            "org": "${HZN_ORG_ID}",
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.consul",
+            "version": "1.10.3",
+            "arch": "${ARCH}"
+        },
+        {
+            "org": "${HZN_ORG_ID}",
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.redis",
+            "version": "6.2.6",
+            "arch": "${ARCH}"
+        }
     ],
     "userInput": [
-        { "name": "EDGEX_SECURITY_SECRET_STORE", "type": "boolean", "defaultValue": "false"},
-        { "name": "Registry_Host", "type": "string",  "defaultValue": "edgex-core-consul" },
-        { "name": "Clients_Metadata_Host", "type": "string",  "defaultValue": "edgex-core-metadata" },
-        { "name": "Clients_RulesEngine_Host", "type": "string",  "defaultValue": "edgex-kuiper" },
-        { "name": "Databases_Primary_Host", "type": "string",  "defaultValue": "edgex-redis" }
+        { "name": "CLIENTS_CORE_COMMAND_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-command" },
+        { "name": "CLIENTS_CORE_DATA_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-data" },
+        { "name": "CLIENTS_CORE_METADATA_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-metadata" },
+        { "name": "CLIENTS_SUPPORT_NOTIFICATIONS_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.support-notifications" },
+        { "name": "CLIENTS_SUPPORT_SCHEDULER_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.support-scheduler" },
+        { "name": "DATABASES_PRIMARY_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.redis" },
+        { "name": "EDGEX_SECURITY_SECRET_STORE", "type": "boolean", "defaultValue": "false" },
+        { "name": "NOTIFICATIONS_SENDER", "type": "string", "defaultValue": "edgex-core-metadata" },
+        { "name": "REGISTRY_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.consul" },
+        { "name": "SERVICE_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-metadata" }
     ],
     "deployment": {
         "services": {
             "${SERVICE_NAME}": {
-                "image": "${DOCKER_IMAGE_BASE}:${SERVICE_VERSION}"
+                "image": "${DOCKER_IMAGE_BASE}:${SERVICE_VERSION}",
+                "command": ["/core-metadata", "-cp=consul.http://${EDGE_OWNER}.${EDGE_DEPLOY}.consul:8500", "--registry", "--confdir=/res"],
+                "ports": [
+                    {
+                        "HostIP": "127.0.0.1",
+                        "HostPort": "59881:59881/tcp"
+                    }
+                ]
             }
         }
     }
