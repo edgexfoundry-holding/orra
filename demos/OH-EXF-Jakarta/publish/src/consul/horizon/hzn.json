@@ -1,8 +1,0 @@
-{
-    "MetadataVars": {
-        "IMAGE_NAME": "consul",
-        "DOCKER_IMAGE_BASE": "$(IMAGE_NAME)",
-        "SERVICE_NAME": "$(EDGE_OWNER).$(EDGE_DEPLOY).$(IMAGE_NAME)",
-        "SERVICE_VERSION": "1.10.3"
-    }
-}
