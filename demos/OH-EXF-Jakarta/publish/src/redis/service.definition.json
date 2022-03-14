@@ -13,7 +13,7 @@
     "deployment": {
         "services": {
             "${SERVICE_NAME}": {
-                "image": "${DOCKER_IMAGE_BASE}:${SERVICE_VERSION}-alpine",
+                "image": "${DOCKER_IMAGE_BASE}:${DOCKER_IMAGE_VERSION}",
                 "binds": [
                     "${APP_BIND_HORIZON_DIR}/db-data:/data:rw"
                 ],

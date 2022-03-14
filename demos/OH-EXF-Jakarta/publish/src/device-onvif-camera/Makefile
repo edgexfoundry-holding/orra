@@ -2,10 +2,7 @@
 include ../../make/base.mk
 
 # Define and export service specific variables
-export IMAGE_NAME=device-onvif-camera
-export DOCKER_IMAGE_BASE=$(DOCKER_BASE)/$(IMAGE_NAME)-dev
-export SERVICE_NAME=$(EDGE_OWNER).$(EDGE_DEPLOY).$(IMAGE_NAME)
-export SERVICE_VERSION=0.0.0
+export VERSION_SUFFIX=-dev
 
 # Include service template file
 include ../../make/service-tmpl.mk

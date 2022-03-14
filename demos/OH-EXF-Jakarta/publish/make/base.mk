@@ -19,10 +19,11 @@ ifeq ($(TRACE),1)
 endif
 
 .DELETE_ON_ERROR:
-MAKEFLAGS += --warn-undefined-variables --no-builtin-rules --no-print-directory
+MAKEFLAGS += --warn-undefined-variables --no-builtin-rules
 
 export ARCH ?= $(shell hzn architecture)
 
-include $(make_base_dir)/env.check.mk
+include $(make_base_dir:/=)/helpers.mk
+include $(make_base_dir:/=)/env.check.mk
 
 endif # BASE_MK_DEFINED

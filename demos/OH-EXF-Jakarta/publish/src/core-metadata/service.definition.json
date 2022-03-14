@@ -10,13 +10,13 @@
         {
             "org": "${HZN_ORG_ID}",
             "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.consul",
-            "version": "1.10.3",
+            "version": "${VERSION_consul}",
             "arch": "${ARCH}"
         },
         {
             "org": "${HZN_ORG_ID}",
             "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.redis",
-            "version": "6.2.6",
+            "version": "${VERSION_redis}",
             "arch": "${ARCH}"
         }
     ],
@@ -35,7 +35,7 @@
     "deployment": {
         "services": {
             "${SERVICE_NAME}": {
-                "image": "${DOCKER_IMAGE_BASE}:${SERVICE_VERSION}",
+                "image": "${DOCKER_IMAGE_BASE}:${DOCKER_IMAGE_VERSION}",
                 "command": ["-cp=consul.http://${EDGE_OWNER}.${EDGE_DEPLOY}.consul:8500", "--registry", "--confdir=/res"],
                 "ports": [
                     {
