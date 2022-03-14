@@ -30,7 +30,7 @@
         { "name": "EDGEX_SECURITY_SECRET_STORE", "type": "boolean", "defaultValue": "false" },
         { "name": "NOTIFICATIONS_SENDER", "type": "string", "defaultValue": "edgex-core-metadata" },
         { "name": "REGISTRY_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.consul" },
-        { "name": "SERVICE_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-metadata" }
+        { "name": "SERVICE_HOST", "type": "string", "defaultValue": "${SERVICE_NAME}" }
     ],
     "deployment": {
         "services": {
