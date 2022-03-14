@@ -7,3 +7,4 @@ demos/.DS_Store
 **/.env
 .hzn.json.tmp.mk
 device-onvif-camera/src
+build/
