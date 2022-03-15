@@ -24,6 +24,18 @@
             "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-metadata",
             "version": "${VERSION_core_metadata}",
             "arch": "${ARCH}"
+        },
+        {
+            "org": "${HZN_ORG_ID}",
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.device-mqtt",
+            "version": "${VERSION_device_mqtt}",
+            "arch": "${ARCH}"
+        },
+        {
+            "org": "${HZN_ORG_ID}",
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.device-onvif-camera",
+            "version": "${VERSION_device_onvif_camera}",
+            "arch": "${ARCH}"
         }
     ],
     "userInput": [

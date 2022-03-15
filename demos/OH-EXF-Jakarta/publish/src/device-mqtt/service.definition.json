@@ -9,14 +9,8 @@
     "requiredServices": [
         {
             "org": "${HZN_ORG_ID}",
-            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.consul",
-            "version": "${VERSION_consul}",
-            "arch": "${ARCH}"
-        },
-        {
-            "org": "${HZN_ORG_ID}",
-            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.redis",
-            "version": "${VERSION_redis}",
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.mqtt-broker",
+            "version": "${VERSION_mqtt_broker}",
             "arch": "${ARCH}"
         },
         {
@@ -27,8 +21,14 @@
         },
         {
             "org": "${HZN_ORG_ID}",
-            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.mqtt-broker",
-            "version": "${VERSION_mqtt_broker}",
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.consul",
+            "version": "${VERSION_consul}",
+            "arch": "${ARCH}"
+        },
+        {
+            "org": "${HZN_ORG_ID}",
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.redis",
+            "version": "${VERSION_redis}",
             "arch": "${ARCH}"
         }
     ],

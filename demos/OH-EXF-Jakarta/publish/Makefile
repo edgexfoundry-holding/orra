@@ -19,7 +19,8 @@ p ?= $(word 1,$(PATTERNS))
 n ?= 0.1
 
 .PHONY: all publish $(SUBPROJECTS:%=publish-%) publish-patterns $(PATTERNS:%=publish-pattern-%) \
-		unregister register watch-agreements envsubst $(PATTERNS:%=print-pattern-%) $(SUBPROJECTS:%=print-%)
+		unregister register watch-agreements envsubst $(PATTERNS:%=print-pattern-%) $(SUBPROJECTS:%=print-%) \
+		tail inspect watch-services
 
 all: publish publish-patterns
 
@@ -65,3 +66,39 @@ tail-all:
 		docker logs -f $$name > /tmp/$$name.dockerlog 2>&1 & \
 	done
 	-trap 'pkill -f "docker logs -f"' INT; tail -f /tmp/*.dockerlog
+
+sv ?=
+tail:
+	$(call require_arg,sv,service_name)
+	@x2=; \
+	while true; do \
+    	x=$$(docker ps -aqf "name=$(sv)"); \
+    	if [ -n "$$x" ] && [ ! "$$x2" = "$$x"  ]; then \
+    	    echo "---- $(sv): ($$x) ----"; \
+    	    docker logs -f "$$x"; \
+    	    echo "----- $(sv): ($$x) -----"; \
+			x2="$$x"; \
+		fi \
+	done
+
+inspect:
+	$(call require_arg,sv,service_name)
+	@x2=; \
+	while true; do \
+    	x=$$(docker ps -aqf "name=$(sv)"); \
+    	if [ -n "$$x" ]; then \
+    	    echo "---- $(sv): ($$x) ----"; \
+    	    docker inspect "$$x"; \
+    	    echo "----- $(sv): ($$x) -----"; \
+			x2="$$x"; \
+		fi \
+	done
+
+watch-services:
+	@while true; do \
+		n="$$(docker network ls | grep $(HZN_ORG_ID)_$(EDGE_OWNER).$(EDGE_DEPLOY) | wc -l)"; \
+		s="$$(docker ps |& sed -En 's/.*$(EDGE_OWNER)\.$(EDGE_DEPLOY)\.(.*)/\1/p' | sort -u | xargs echo -n | sed -E 's/ /, /g')"; \
+		c="$$(wc -w <<< "$$s")"; \
+		printf "[$$(date '+%D %T')] Networks: %2d, Containers: %2d, Services: [%-109s]\n" "$$n" "$$c" "$$s"; \
+		sleep $(n); \
+	done

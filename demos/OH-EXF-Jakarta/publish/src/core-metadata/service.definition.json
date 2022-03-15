@@ -40,7 +40,7 @@
                 "command": ["-cp=consul.http://${EDGE_OWNER}.${EDGE_DEPLOY}.consul:8500", "--registry", "--confdir=/res"],
                 "ports": [
                     {
-                        "HostIP": "127.0.0.1",
+                        "HostIP": "0.0.0.0",
                         "HostPort": "59881:59881/tcp"
                     }
                 ]
