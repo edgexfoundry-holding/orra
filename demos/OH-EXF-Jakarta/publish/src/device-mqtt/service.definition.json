@@ -38,7 +38,8 @@
         { "name": "MESSAGEQUEUE_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.redis" },
         { "name": "MQTTBROKERINFO_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.mqtt-broker" },
         { "name": "REGISTRY_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.consul" },
-        { "name": "SERVICE_HOST", "type": "string", "defaultValue": "${SERVICE_NAME}" }
+        { "name": "SERVICE_HOST", "type": "string", "defaultValue": "${SERVICE_NAME}" },
+        { "name": "SERVICE_SERVERBINDADDR", "type": "string", "defaultValue": "0.0.0.0" }
     ],
     "deployment": {
         "services": {
