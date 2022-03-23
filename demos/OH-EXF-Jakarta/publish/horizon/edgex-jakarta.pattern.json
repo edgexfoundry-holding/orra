@@ -1,16 +1,16 @@
 {
-  "name": "pattern-${EDGE_OWNER}.${EDGE_DEPLOY}.edgex-jakarta",
+  "name": "pattern-${EDGE_OWNER}.${EDGE_DEPLOY}.${PATTERN_NAME}-${PATTERN_VERSION}",
   "label": "EdgeX Jakarta Services",
   "description": "Pattern for EdgeX Jakarta",
   "public": false,
   "services": [
     {
-      "serviceUrl": "${EDGE_OWNER}.${EDGE_DEPLOY}.redis",
+      "serviceUrl": "${EDGE_OWNER}.${EDGE_DEPLOY}.deploy-data",
       "serviceOrgid": "${HZN_ORG_ID}",
       "serviceArch": "${ARCH}",
       "serviceVersions": [
         {
-          "version": "${VERSION_redis}"
+          "version": "${VERSION_deploy_data}"
         }
       ]
     },
@@ -21,6 +21,16 @@
       "serviceVersions": [
         {
           "version": "${VERSION_consul}"
+        }
+      ]
+    },
+    {
+      "serviceUrl": "${EDGE_OWNER}.${EDGE_DEPLOY}.redis",
+      "serviceOrgid": "${HZN_ORG_ID}",
+      "serviceArch": "${ARCH}",
+      "serviceVersions": [
+        {
+          "version": "${VERSION_redis}"
         }
       ]
     },

@@ -9,6 +9,12 @@
     "requiredServices": [
         {
             "org": "${HZN_ORG_ID}",
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.deploy-data",
+            "version": "${VERSION_deploy_data}",
+            "arch": "${ARCH}"
+        },
+        {
+            "org": "${HZN_ORG_ID}",
             "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.consul",
             "version": "${VERSION_consul}",
             "arch": "${ARCH}"
@@ -42,6 +48,9 @@
         "services": {
             "${SERVICE_NAME}": {
                 "image": "${DOCKER_IMAGE_BASE}:${DOCKER_IMAGE_VERSION}",
+                "binds": [
+                    "${APP_BIND_HORIZON_DIR}/edgex-ui/res:/go/src/github.com/edgexfoundry/edgex-ui-go/cmd/edgex-ui-server/res:ro"
+                ],
                 "ports": [{
                     "HostIP": "0.0.0.0",
                     "HostPort": "4000:4000/tcp"

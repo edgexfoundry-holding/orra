@@ -9,6 +9,12 @@
     "requiredServices": [
         {
             "org": "${HZN_ORG_ID}",
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.deploy-data",
+            "version": "${VERSION_deploy_data}",
+            "arch": "${ARCH}"
+        },
+        {
+            "org": "${HZN_ORG_ID}",
             "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.mqtt-broker",
             "version": "${VERSION_mqtt_broker}",
             "arch": "${ARCH}"

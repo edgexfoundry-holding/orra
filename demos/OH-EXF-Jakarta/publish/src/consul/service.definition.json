@@ -7,14 +7,21 @@
     "public": false,
     "sharable": "singleton",
     "requiredServices": [
+        {
+            "org": "${HZN_ORG_ID}",
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.deploy-data",
+            "version": "${VERSION_deploy_data}",
+            "arch": "${ARCH}"
+        }
     ],
     "userInput": [
+        { "name": "CONSUL_BIND_INTERFACE", "type": "string", "defaultValue": "eth1" }
     ],
     "deployment": {
         "services": {
             "${SERVICE_NAME}": {
                 "image": "${DOCKER_IMAGE_BASE}:${DOCKER_IMAGE_VERSION}",
-                "command": ["agent", "-ui", "-bootstrap", "-server", "-client", "0.0.0.0"],
+                "command": ["agent", "-ui", "-bootstrap", "-server", "-client=0.0.0.0"],
                 "binds": [
                     "${APP_BIND_HORIZON_DIR}/consul-config:/consul/config:rw",
                     "${APP_BIND_HORIZON_DIR}/consul-data:/consul/data:rw"

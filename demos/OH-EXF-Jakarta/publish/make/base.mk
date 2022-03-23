@@ -26,4 +26,7 @@ export ARCH ?= $(shell hzn architecture)
 include $(make_base_dir:/=)/helpers.mk
 include $(make_base_dir:/=)/env.check.mk
 
+# include all the version numbers
+include $(make_base_dir:/=)/../versions.mk
+
 endif # BASE_MK_DEFINED

@@ -1,0 +1,72 @@
+[Service]
+Host = "edgex-ui-go"
+Port = 4000
+Labels = []
+OpenMsg = "edgeX ui started"
+StaticResourcesPath = "static/web"
+
+#Using an default memory db automatically if not configed here.
+[Database]
+Host = ""
+Name = ""
+Port = 0
+Username = "su"
+Password = "su"
+  [Database.Scheme]
+  User = "user"
+
+[Clients]
+    [Clients.CoreData]
+    Protocol = 'http'
+    Host = "${CLIENTS_CORE_DATA_HOST}"
+    Port = 59880
+    PathPrefix = "/core-data"
+
+    [Clients.Metadata]
+    Protocol = 'http'
+    Host = "${CLIENTS_CORE_METADATA_HOST}"
+    Port = 59881
+    PathPrefix = "/core-metadata"
+
+    [Clients.CoreCommand]
+    Protocol = 'http'
+    Host = "${CLIENTS_CORE_COMMAND_HOST}"
+    Port = 59882
+    PathPrefix = "/core-command"
+
+#    [Clients.Notification]
+#    Protocol = 'http'
+#    Host = 'edgex-support-notifications'
+#    Port = 59860
+#    PathPrefix = "/support-notifications"
+#
+#    [Clients.Scheduler]
+#    Protocol = 'http'
+#    Host = 'edgex-support-scheduler'
+#    Port = 59861
+#    PathPrefix = "/support-scheduler"
+#
+#    [Clients.RuleEngine]
+#    Protocol = 'http'
+#    Host = 'edgex-kuiper'
+#    Port = 59720
+#    PathPrefix = "/rules-engine"
+#
+#    [Clients.System]
+#    Protocol = 'http'
+#    Host = 'edgex-sys-mgmt-agent'
+#    Port = 58890
+#    PathPrefix = "/sys-mgmt-agent"
+#
+#    [Clients.AppService]
+#    Protocol = 'http'
+#    Host = 'edgex-app-rules-engine'
+#    Port = 59701
+#    PathPrefix = "/app-service"
+
+[Registry]
+Host = "${REGISTRY_HOST}"
+Port = 8500
+Type = "consul"
+ConfigRegistryStem = "edgex/appservices/"
+ServiceVersion = "2.0"
