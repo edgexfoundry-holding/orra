@@ -12,7 +12,7 @@ include ../../make/service-tmpl.mk
 .PHONY: build push
 
 publish-service: build push fetch $(SERVICE_JSON_OUTPUT)
-	hzn exchange service publish -O -f service.definition.json --pull-image
+	hzn exchange service publish -O -f "$(SERVICE_JSON_OUTPUT)" --pull-image
 
 build: src fetch
 	@echo "building docker image..."

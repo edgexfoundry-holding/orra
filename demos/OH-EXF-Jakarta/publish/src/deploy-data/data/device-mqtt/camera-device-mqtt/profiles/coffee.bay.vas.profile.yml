@@ -1,0 +1,30 @@
+name: "coffee-bay-vas-profile"
+manufacturer: "Intel"
+model: "CV People Detection/Line Crossing"
+description: "A device for CV People Detection/Counting Events"
+labels:
+  - "cv"
+  - "line-crossing"
+  - "roi"
+  - "enter"
+  - "exit"
+  - "total"
+
+deviceResources:
+  - name: "cv-line-crossing-event"
+    description: "A json message containing the CV Line Crossing event"
+    properties:
+      valueType: "String"
+      readWrite: "R"
+  - name: ping
+    isHidden: true
+    description: "device awake"
+    properties:
+      valueType: "String"
+      readWrite: "R"
+
+deviceCommands:
+  - name: "cv-line-crossing-event"
+    readWrite: "R"
+    resourceOperations:
+      - {deviceResource: "cv-line-crossing-event"}

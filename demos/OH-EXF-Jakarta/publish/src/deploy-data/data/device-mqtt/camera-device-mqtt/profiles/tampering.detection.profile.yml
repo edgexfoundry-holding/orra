@@ -1,0 +1,20 @@
+name: "tampering-detection-profile"
+manufacturer: "Intel"
+model: "CV Tampering detection"
+description: "A device for CV Object detection for tampering detection"
+labels:
+  - "cv"
+  - "tampering"
+
+deviceResources:
+  - name: "cv-tampering-detection-data"
+    description: "A json message containing the CV Objects detections"
+    properties:
+      valueType: "String"
+      readWrite: "R"
+  - name: ping
+    isHidden: true
+    description: "device awake"
+    properties:
+      valueType: "String"
+      readWrite: "R"

@@ -12,4 +12,7 @@ export VERSION_core_metadata ?= $(EDGEX_CORE_VERSION)
 export VERSION_device_mqtt ?= $(EDGEX_CORE_VERSION)
 export VERSION_edgex_ui ?= $(EDGEX_CORE_VERSION)
 
+export VERSION_edgex_jakarta_mono ?= $(EDGEX_CORE_VERSION)
+
 export PATTERN_VERSION_edgex_jakarta ?= 0.0.4
+export PATTERN_VERSION_edgex_jakarta_mono ?= 0.0.1

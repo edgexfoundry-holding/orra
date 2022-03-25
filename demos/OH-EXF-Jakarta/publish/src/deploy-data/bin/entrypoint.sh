@@ -14,9 +14,12 @@ tmp="$(mktemp)"
 
 find . -type f > "$tmp"
 while IFS= read -r f; do
-    of="${DEST_DIR}${f#?}"
-    echo "envsubst $f into $of..."
-    envsubst < "$f" > "$of"
+    # only envsubst non script files
+    if ! [ "$(head -n 1 "$f" | cut -c -2)" = "#!" ]; then
+        of="${DEST_DIR}${f#?}"
+        echo "envsubst $f into $of..."
+        envsubst < "$f" > "$of"
+    fi
 done < "$tmp"
 
 rm -f "${tmp}"

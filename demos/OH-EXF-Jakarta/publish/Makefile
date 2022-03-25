@@ -3,8 +3,13 @@ include make/base.mk
 
 export ARCH ?= $(shell hzn architecture)
 
-SUBPROJECTS = redis consul mqtt-broker core-command core-metadata device-mqtt edgex-ui asc-mqtt device-onvif-camera deploy-data
+SUBPROJECTS = redis consul mqtt-broker core-command core-metadata device-mqtt edgex-ui \
+				asc-mqtt device-onvif-camera deploy-data
+#				edgex-jakarta-mono
 PATTERNS = edgex-jakarta
+#edgex-jakarta-mono
+
+NODE_POLICY ?= horizon/node-policy.json
 
 # make sure version is defined for all subproject
 $(call require_versions_for,$(SUBPROJECTS))
@@ -49,7 +54,8 @@ cleanup:
 
 register:
 	$(call require_arg,p,$(word 1,$(PATTERNS)))
-	hzn register -p "pattern-$(EDGE_OWNER).$(EDGE_DEPLOY).$(p)-$(PATTERN_VERSION_$(subst -,_,$(p)))"
+	hzn register -p "pattern-$(EDGE_OWNER).$(EDGE_DEPLOY).$(p)-$(PATTERN_VERSION_$(subst -,_,$(p)))" \
+		--policy="$(NODE_POLICY)"
 
 watch-agreements:
 	watch -n $(n) hzn agreement list
@@ -94,6 +100,7 @@ inspect:
     	    docker inspect "$$x"; \
     	    echo "----- $(sv): ($$x) -----"; \
 			x2="$$x"; \
+			sleep 0.2; \
 		fi \
 	done
 

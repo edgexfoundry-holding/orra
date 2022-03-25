@@ -1,0 +1,18 @@
+{
+  "name": "pattern-${EDGE_OWNER}.${EDGE_DEPLOY}.${PATTERN_NAME}-${PATTERN_VERSION}",
+  "label": "EdgeX Jakarta Mono Services",
+  "description": "Mono Pattern for EdgeX Jakarta",
+  "public": false,
+  "services": [
+    {
+      "serviceUrl": "${EDGE_OWNER}.${EDGE_DEPLOY}.edgex-jakarta-mono",
+      "serviceOrgid": "${HZN_ORG_ID}",
+      "serviceArch": "${ARCH}",
+      "serviceVersions": [
+        {
+          "version": "${VERSION_edgex_jakarta_mono}"
+        }
+      ]
+    }
+  ]
+}
