@@ -33,6 +33,7 @@
         }
     ],
     "userInput": [
+        // Note: EdgeX UI does not support ENV overrides, and thus the configuration.toml is necessary
         { "name": "EDGEX_SECURITY_SECRET_STORE", "type": "boolean", "defaultValue": "false" },
         { "name": "CLIENTS_CORE_COMMAND_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-command" },
         { "name": "CLIENTS_CORE_DATA_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-data" },

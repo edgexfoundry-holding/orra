@@ -3,13 +3,16 @@ include make/base.mk
 
 export ARCH ?= $(shell hzn architecture)
 
-SUBPROJECTS = redis consul mqtt-broker core-command core-metadata device-mqtt edgex-ui \
-				asc-mqtt device-onvif-camera deploy-data
+# Note: this must be in sorted order based on dependencies
+SUBPROJECTS = deploy-data redis consul mqtt-broker core-metadata device-mqtt \
+				asc-mqtt device-onvif-camera core-command edgex-ui
 #				edgex-jakarta-mono
 PATTERNS = edgex-jakarta
 #edgex-jakarta-mono
 
 NODE_POLICY ?= horizon/node-policy.json
+
+.NOTPARALLEL:
 
 # make sure version is defined for all subproject
 $(call require_versions_for,$(SUBPROJECTS))
@@ -22,7 +25,7 @@ n ?= 0.1
 
 .PHONY: all publish $(SUBPROJECTS:%=publish-%) publish-patterns $(PATTERNS:%=publish-pattern-%) \
 		unregister register watch-agreements envsubst $(PATTERNS:%=print-pattern-%) $(SUBPROJECTS:%=print-%) \
-		tail inspect watch-services cleanup
+		tail inspect watch-services cleanup force-clean
 
 all: publish publish-patterns
 
@@ -51,11 +54,19 @@ unregister:
 
 cleanup:
 	sudo rm -rf "$(APP_BIND_HORIZON_DIR)"
+	sudo mkdir -p "$(APP_BIND_HORIZON_DIR)"
+	sudo chmod 777 "$(APP_BIND_HORIZON_DIR)"
+
+force-clean: cleanup
+	docker container prune -f
+	docker network prune -f
 
 register:
 	$(call require_arg,p,$(word 1,$(PATTERNS)))
 	hzn register -p "pattern-$(EDGE_OWNER).$(EDGE_DEPLOY).$(p)-$(PATTERN_VERSION_$(subst -,_,$(p)))" \
-		--policy="$(NODE_POLICY)"
+		"$(addprefix --policy=,$(NODE_POLICY))"
+	sudo mkdir -p "$(APP_BIND_HORIZON_DIR)"
+	sudo chmod 777 "$(APP_BIND_HORIZON_DIR)"
 
 watch-agreements:
 	watch -n $(n) hzn agreement list
@@ -81,11 +92,11 @@ tail:
 	$(call require_arg,sv,service_name)
 	@x2=; \
 	while true; do \
-    	x=$$(docker ps -aqf "name=$(sv)"); \
-    	if [ -n "$$x" ] && [ ! "$$x2" = "$$x"  ]; then \
-    	    echo "---- $(sv): ($$x) ----"; \
+    	x=$$(docker ps -aqf "name=$(sv)" | tail -n 1); \
+    	if [ -n "$$x" ]; then \
+    	    echo ">>>> $(sv): ($$x) >>>>"; \
     	    docker logs -f "$$x"; \
-    	    echo "----- $(sv): ($$x) -----"; \
+    	    echo "<<<< $(sv): ($$x) <<<<"; \
 			x2="$$x"; \
 		fi \
 	done
@@ -94,11 +105,11 @@ inspect:
 	$(call require_arg,sv,service_name)
 	@x2=; \
 	while true; do \
-    	x=$$(docker ps -aqf "name=$(sv)"); \
+    	x=$$(docker ps -qf "name=$(sv)"); \
     	if [ -n "$$x" ]; then \
-    	    echo "---- $(sv): ($$x) ----"; \
+    	    echo ">>>> $(sv): ($$x) >>>>"; \
     	    docker inspect "$$x"; \
-    	    echo "----- $(sv): ($$x) -----"; \
+    	    echo "<<<< $(sv): ($$x) <<<<"; \
 			x2="$$x"; \
 			sleep 0.2; \
 		fi \

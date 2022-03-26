@@ -9,10 +9,6 @@
     "requiredServices": [
     ],
     "userInput": [
-        { "name": "CLIENTS_CORE_COMMAND_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-command" },
-        { "name": "CLIENTS_CORE_DATA_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-data" },
-        { "name": "CLIENTS_CORE_METADATA_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-metadata" },
-        { "name": "REGISTRY_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.consul" }
     ],
     "deployment": {
         "services": {

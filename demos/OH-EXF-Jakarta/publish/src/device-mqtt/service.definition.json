@@ -9,12 +9,6 @@
     "requiredServices": [
         {
             "org": "${HZN_ORG_ID}",
-            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.deploy-data",
-            "version": "${VERSION_deploy_data}",
-            "arch": "${ARCH}"
-        },
-        {
-            "org": "${HZN_ORG_ID}",
             "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.mqtt-broker",
             "version": "${VERSION_mqtt_broker}",
             "arch": "${ARCH}"
@@ -52,18 +46,17 @@
         { "name": "MQTTBROKERINFO_INCOMINGTOPIC", "type": "string",  "defaultValue": "incoming/data/#" },
         { "name": "MQTTBROKERINFO_RESPONSETOPIC", "type": "string",  "defaultValue": "command/response/#" },
         { "name": "MQTTBROKERINFO_USETOPICLEVELS", "type": "boolean",  "defaultValue": "true" },
-        { "name": "CONFIGURATION_PROVIDER_URL", "type": "string", "defaultValue": "consul.http://${EDGE_OWNER}.${EDGE_DEPLOY}.consul:8500" },
-        { "name": "WAIT_FOR_HOSTS", "type": "string",
-            "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-metadata ${EDGE_OWNER}.${EDGE_DEPLOY}.redis ${EDGE_OWNER}.${EDGE_DEPLOY}.mqtt-broker ${EDGE_OWNER}.${EDGE_DEPLOY}.consul" }
+        { "name": "WAIT_FOR_HOSTS_PREFIX", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}." },
+        { "name": "WAIT_FOR_HOSTS", "type": "string", "defaultValue": "mqtt-broker consul:8500 redis core-metadata:59881" }
     ],
     "deployment": {
         "services": {
             "${SERVICE_NAME}": {
                 "image": "${DOCKER_IMAGE_BASE}:${DOCKER_IMAGE_VERSION}",
-                "entrypoint": ["/custom-entrypoint.sh"],
-                "command": [""],
+                "entrypoint": ["/wait.sh", "${ENTRYPOINT}"],
+                "command": ["-cp=consul.http://${EDGE_OWNER}.${EDGE_DEPLOY}.consul:8500", "--registry"],
                 "binds": [
-                    "${APP_BIND_HORIZON_DIR}/device-mqtt/custom-entrypoint.sh:/custom-entrypoint.sh:ro",
+                    "${APP_BIND_HORIZON_DIR}/scripts/wait.sh:/wait.sh:ro",
                     "${APP_BIND_HORIZON_DIR}/device-mqtt/camera-device-mqtt:/camera-device-mqtt:ro"
                 ],
                 "ports": [{

@@ -1,7 +1,8 @@
 # Guard to prevent it from being included more than once
-ifndef SERVICE_TMPL_MK_DEFINED
-SERVICE_TMPL_MK_DEFINED := 1
+ifndef SERVICE_TEMPLATE_MK_DEFINED
+SERVICE_TEMPLATE_MK_DEFINED := 1
 
+export ENTRYPOINT ?= /$(current_folder_name)
 export IMAGE_NAME ?= $(current_folder_name)
 export DOCKER_IMAGE_BASE ?= $(DOCKER_BASE)/$(IMAGE_NAME)
 export VERSION_SUFFIX ?=
@@ -34,8 +35,8 @@ endif
 $(BUILD_DIR):
 	mkdir -p "$@"
 
-# remove comments from pattern.json files (any line starting with //)
+# remove comments from json files (any line starting with 0 or more spaces followed by //)
 $(SERVICE_JSON_OUTPUT): $(SERVICE_JSON_INPUT) | $(BUILD_DIR)
 	sed -E 's|^\s*//.*||g' "$(SERVICE_JSON_INPUT)" > "$@"
 
-endif # SERVICE_TMPL_MK_DEFINED
+endif # SERVICE_TEMPLATE_MK_DEFINED

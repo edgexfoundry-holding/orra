@@ -37,13 +37,19 @@
         { "name": "TRIGGER_EDGEXMESSAGEBUS_PUBLISHHOST_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.redis" },
         { "name": "TRIGGER_EDGEXMESSAGEBUS_SUBSCRIBEHOST_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.redis" },
         { "name": "WRITABLE_PIPELINE_FUNCTIONS_MQTTEXPORT_PARAMETERS_BROKERADDRESS", "type": "string", "defaultValue": "tcp://${EDGE_OWNER}.${EDGE_DEPLOY}.mqtt-broker:1883" },
-        { "name": "WRITABLE_PIPELINE_FUNCTIONS_MQTTEXPORT_PARAMETERS_TOPIC", "type": "string", "defaultValue": "edgex-events" }
+        { "name": "WRITABLE_PIPELINE_FUNCTIONS_MQTTEXPORT_PARAMETERS_TOPIC", "type": "string", "defaultValue": "edgex-events" },
+        { "name": "WAIT_FOR_HOSTS_PREFIX", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}." },
+        { "name": "WAIT_FOR_HOSTS", "type": "string", "defaultValue": "consul:8500 redis core-metadata:59881" }
     ],
     "deployment": {
         "services": {
             "${SERVICE_NAME}": {
                 "image": "${DOCKER_IMAGE_BASE}:${DOCKER_IMAGE_VERSION}",
+                "entrypoint": ["/wait.sh", "${ENTRYPOINT}"],
                 "command": ["-cp=consul.http://${EDGE_OWNER}.${EDGE_DEPLOY}.consul:8500", "--registry", "--confdir=/res"],
+                "binds": [
+                    "${APP_BIND_HORIZON_DIR}/scripts/wait.sh:/wait.sh:ro"
+                ],
                 "ports": [
                     {
                         "HostIP": "127.0.0.1",

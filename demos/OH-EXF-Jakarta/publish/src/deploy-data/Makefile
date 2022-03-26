@@ -6,7 +6,7 @@ export IMAGE_NAME ?= $(current_folder_name)
 export DOCKER_IMAGE_BASE ?= localhost:5000/$(IMAGE_NAME)
 
 # Include service template file
-include ../../make/service-tmpl.mk
+include ../../make/service-template.mk
 
 .PHONY: build push
 

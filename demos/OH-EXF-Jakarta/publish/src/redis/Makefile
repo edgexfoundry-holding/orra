@@ -7,4 +7,4 @@ export DOCKER_IMAGE_BASE=$(IMAGE_NAME)
 export VERSION_SUFFIX=-alpine
 
 # Include service template file
-include ../../make/service-tmpl.mk
+include ../../make/service-template.mk

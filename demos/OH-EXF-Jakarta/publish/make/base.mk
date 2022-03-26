@@ -19,7 +19,7 @@ ifeq ($(TRACE),1)
 endif
 
 .DELETE_ON_ERROR:
-MAKEFLAGS += --warn-undefined-variables --no-builtin-rules
+MAKEFLAGS += --warn-undefined-variables --no-builtin-rules --no-print-directory
 
 export ARCH ?= $(shell hzn architecture)
 
