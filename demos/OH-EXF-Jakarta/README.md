@@ -9,7 +9,6 @@ docker run -d -p 5000:5000 --restart=always --name registry registry:2
 ```
 
 
-
 ### Networking limitations and issues
 #### Consul
 By default, `consul` wants to bind to a local IP address as the `Cluster Address`. This is used
@@ -30,9 +29,11 @@ some unforeseen consequence.
 - We aren't making all services depend on `deploy-data`, just the lowest level ones (`consul`, `redis`, `mqtt-broker`).
 The reason for this is that we do not need any network connections to it (we just want it started first).
 
-- We are using a custom `wait.sh` script because we have to wait for the networks to stabilize before we
-start the edgex services. If we do not do that, there are some services that will become unstable and unpredictable based on
-the asynchronous nature of the management agent.
+> **Note:** This next bullet no longer appears to be true. For some reason, it seems like the system
+> is more stable when **not** using the `wait.sh` script...
+> - We are using a custom `wait.sh` script because we have to wait for the networks to stabilize before we
+> start the edgex services. If we do not do that, there are some services that will become unstable and unpredictable based on
+> the asynchronous nature of the management agent.
 
 #### Json Pre-processing
 You may have noticed that some `.json` files have comments in them, in the form of `// comment...`.

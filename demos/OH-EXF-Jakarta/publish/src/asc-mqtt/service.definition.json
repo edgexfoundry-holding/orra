@@ -45,7 +45,8 @@
         "services": {
             "${SERVICE_NAME}": {
                 "image": "${DOCKER_IMAGE_BASE}:${DOCKER_IMAGE_VERSION}",
-                "entrypoint": ["/wait.sh", "${ENTRYPOINT}"],
+                // uncomment this entrypoint to enable wait script
+                // "entrypoint": ["/wait.sh", "${ENTRYPOINT}"],
                 "command": ["-cp=consul.http://${EDGE_OWNER}.${EDGE_DEPLOY}.consul:8500", "--registry", "--confdir=/res"],
                 "binds": [
                     "${APP_BIND_HORIZON_DIR}/scripts/wait.sh:/wait.sh:ro"

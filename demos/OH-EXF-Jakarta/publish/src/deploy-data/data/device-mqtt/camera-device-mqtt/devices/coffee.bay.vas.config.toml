@@ -1,9 +1,0 @@
-# Pre-define Devices
-[[DeviceList]]
-  Name = "coffee-bay-vas"
-  ProfileName = "coffee-bay-vas-profile"
-  Description = "Profile for Coffee Bay video pipeline"
-  Labels = [ "vas", "cv" ]
-  [DeviceList.Protocols]
-    [DeviceList.Protocols.mqtt]
-      CommandTopic = "command/coffee-bay-vas"

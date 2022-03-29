@@ -1,9 +1,0 @@
-# Pre-define Devices
-[[DeviceList]]
-  Name = "tampering-detection"
-  ProfileName = "tampering-detection-profile"
-  Description = "Profile for Tampering detection pipeline"
-  Labels = [ "vas", "cv" ]
-  [DeviceList.Protocols]
-    [DeviceList.Protocols.mqtt]
-      CommandTopic = "command/tampering-detection"
