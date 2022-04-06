@@ -6,9 +6,8 @@ export ARCH ?= $(shell hzn architecture)
 # Note: this must be in sorted order based on dependencies
 SUBPROJECTS = deploy-data redis consul mqtt-broker core-metadata device-mqtt \
 				asc-mqtt device-onvif-camera core-command edgex-ui
-#				edgex-jakarta-mono
+
 PATTERNS = edgex-jakarta
-#edgex-jakarta-mono
 
 NODE_POLICY ?= horizon/node-policy.json
 
@@ -22,6 +21,8 @@ BUILD_DIR = build
 file ?=
 p ?= $(word 1,$(PATTERNS))
 n ?= 0.1
+
+INPUT_FILE ?= horizon/$(p).user-input.json
 
 .PHONY: all publish $(SUBPROJECTS:%=publish-%) publish-patterns $(PATTERNS:%=publish-pattern-%) \
 		unregister register watch-agreements envsubst $(PATTERNS:%=print-pattern-%) $(SUBPROJECTS:%=print-%) \
@@ -64,7 +65,7 @@ force-clean: cleanup
 register:
 	$(call require_arg,p,$(word 1,$(PATTERNS)))
 	hzn register -p "pattern-$(EDGE_OWNER).$(EDGE_DEPLOY).$(p)-$(PATTERN_VERSION_$(subst -,_,$(p)))" \
-		"$(addprefix --policy=,$(NODE_POLICY))"
+		"$(addprefix --policy=,$(NODE_POLICY))" --input-file=
 	sudo mkdir -p "$(APP_BIND_HORIZON_DIR)"
 	sudo chmod 777 "$(APP_BIND_HORIZON_DIR)"
 
@@ -77,15 +78,6 @@ $(BUILD_DIR):
 # remove comments from pattern.json files (any line starting with //)
 $(PATTERNS:%=$(BUILD_DIR)/%.pattern.json): $(BUILD_DIR)/%.pattern.json : horizon/%.pattern.json | $(BUILD_DIR)
 	sed -E 's|^\s*//.*||g' "horizon/$*.pattern.json" > "$@"
-
-# write all docker logs to file in background, then tail all of them
-tail-all:
-	-pkill -f "docker logs -f"
-	-rm -f /tmp/*.dockerlog
-	for name in $$(docker ps --format="{{.Names}}"); do \
-		docker logs -f $$name > /tmp/$$name.dockerlog 2>&1 & \
-	done
-	-trap 'pkill -f "docker logs -f"' INT; tail -f /tmp/*.dockerlog
 
 sv ?=
 tail:

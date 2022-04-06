@@ -4,7 +4,8 @@ include ../../make/base.mk
 # Define and export service specific variables
 export VERSION_SUFFIX=-dev
 export IMAGE_NAME ?= $(current_folder_name)
-export DOCKER_IMAGE_BASE ?= localhost:5000/$(IMAGE_NAME)
+export LOCAL_DOCKER_BASE ?= localhost:5000
+export DOCKER_IMAGE_BASE ?= $(LOCAL_DOCKER_BASE:%=%/)$(IMAGE_NAME)
 
 # Include service template file
 include ../../make/service-template.mk

@@ -1,13 +1,38 @@
+# Open Horizon EdgeX Foundry Jakarta
+
+## Environment
+The following environment variables **must** be set in order to run the make scripts.
+```shell
+# Sets the scope so that multiple users can use the same instance
+EDGE_OWNER=<sg.edge>
+# Lets you manage and deploy different group of code across dev, demo, test, prod or project
+EDGE_DEPLOY=<dev>
+# Typically, this is set to 'edgexfoundry' in this case
+DOCKER_BASE=<your-docker-account-base>
+HZN_ORG_ID=<org_id>
+HZN_EXCHANGE_USER_AUTH=iamapikey:<your-iamapikey>
+# Root bind directory for app volumes
+APP_BIND_HORIZON_DIR=/var/local/horizon
+```
 
 ## Publish
-
+### localhost
 Right now, because both the `device-onvif-camera` and `deploy-data` images are not in a docker registry,
-the make scripts will automatically push them to a registry running on `localhost:5000`. Use the
-following commands to run a local docker registry:
+the make scripts will automatically push them to a registry running on `localhost:5000`.
+
+Use the following commands to run a local docker registry:
 ```shell
 docker run -d -p 5000:5000 --restart=always --name registry registry:2
 ```
 
+### External Docker Registry
+```shell
+# build and push device onvif camera to external docker registry
+make -C src/device-onvif-camera LOCAL_DOCKER_BASE=<your-docker-registry-base>
+
+# build and push deploy data to external docker registry
+make -C src/deploy-data LOCAL_DOCKER_BASE=<your-docker-registry-base>
+```
 
 ### Networking limitations and issues
 #### Consul
