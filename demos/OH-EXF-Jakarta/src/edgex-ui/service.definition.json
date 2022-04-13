@@ -9,24 +9,6 @@
     "requiredServices": [
         {
             "org": "${HZN_ORG_ID}",
-            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.deploy-data",
-            "version": "${VERSION_deploy_data}",
-            "arch": "${ARCH}"
-        },
-        {
-            "org": "${HZN_ORG_ID}",
-            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.consul",
-            "version": "${VERSION_consul}",
-            "arch": "${ARCH}"
-        },
-        {
-            "org": "${HZN_ORG_ID}",
-            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.redis",
-            "version": "${VERSION_redis}",
-            "arch": "${ARCH}"
-        },
-        {
-            "org": "${HZN_ORG_ID}",
             "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-metadata",
             "version": "${VERSION_core_metadata}",
             "arch": "${ARCH}"

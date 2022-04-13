@@ -24,12 +24,6 @@
             "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.consul",
             "version": "${VERSION_consul}",
             "arch": "${ARCH}"
-        },
-        {
-            "org": "${HZN_ORG_ID}",
-            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.redis",
-            "version": "${VERSION_redis}",
-            "arch": "${ARCH}"
         }
     ],
     "userInput": [
@@ -47,14 +41,14 @@
         { "name": "MQTTBROKERINFO_RESPONSETOPIC", "type": "string",  "defaultValue": "command/response/#" },
         { "name": "MQTTBROKERINFO_USETOPICLEVELS", "type": "boolean",  "defaultValue": "true" },
         { "name": "WAIT_FOR_HOSTS_PREFIX", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}." },
-        { "name": "WAIT_FOR_HOSTS", "type": "string", "defaultValue": "mqtt-broker consul:8500 redis core-metadata:59881" }
+        { "name": "WAIT_FOR_HOSTS", "type": "string", "defaultValue": "mqtt-broker:1883 consul:8500 core-metadata:59881" }
     ],
     "deployment": {
         "services": {
             "${SERVICE_NAME}": {
                 "image": "${DOCKER_IMAGE_BASE}:${DOCKER_IMAGE_VERSION}",
                 // uncomment this entrypoint to enable wait script
-                // "entrypoint": ["/wait.sh", "${ENTRYPOINT}"],
+                 "entrypoint": ["/wait.sh", "${ENTRYPOINT}"],
                 "command": ["-cp=consul.http://${EDGE_OWNER}.${EDGE_DEPLOY}.consul:8500", "--registry"],
                 "binds": [
                     "${APP_BIND_HORIZON_DIR}/scripts/wait.sh:/wait.sh:ro",

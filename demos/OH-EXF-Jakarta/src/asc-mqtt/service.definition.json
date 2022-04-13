@@ -39,14 +39,14 @@
         { "name": "WRITABLE_PIPELINE_FUNCTIONS_MQTTEXPORT_PARAMETERS_BROKERADDRESS", "type": "string", "defaultValue": "tcp://${EDGE_OWNER}.${EDGE_DEPLOY}.mqtt-broker:1883" },
         { "name": "WRITABLE_PIPELINE_FUNCTIONS_MQTTEXPORT_PARAMETERS_TOPIC", "type": "string", "defaultValue": "edgex-events" },
         { "name": "WAIT_FOR_HOSTS_PREFIX", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}." },
-        { "name": "WAIT_FOR_HOSTS", "type": "string", "defaultValue": "consul:8500 redis core-metadata:59881" }
+        { "name": "WAIT_FOR_HOSTS", "type": "string", "defaultValue": "consul:8500 redis:6379 core-metadata:59881" }
     ],
     "deployment": {
         "services": {
             "${SERVICE_NAME}": {
                 "image": "${DOCKER_IMAGE_BASE}:${DOCKER_IMAGE_VERSION}",
                 // uncomment this entrypoint to enable wait script
-                // "entrypoint": ["/wait.sh", "${ENTRYPOINT}"],
+                 "entrypoint": ["/wait.sh", "${ENTRYPOINT}"],
                 "command": ["-cp=consul.http://${EDGE_OWNER}.${EDGE_DEPLOY}.consul:8500", "--registry", "--confdir=/res"],
                 "binds": [
                     "${APP_BIND_HORIZON_DIR}/scripts/wait.sh:/wait.sh:ro"

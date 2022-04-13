@@ -15,12 +15,6 @@
         },
         {
             "org": "${HZN_ORG_ID}",
-            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.redis",
-            "version": "${VERSION_redis}",
-            "arch": "${ARCH}"
-        },
-        {
-            "org": "${HZN_ORG_ID}",
             "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-metadata",
             "version": "${VERSION_core_metadata}",
             "arch": "${ARCH}"
@@ -46,14 +40,14 @@
         { "name": "SERVICE_SERVERBINDADDR", "type": "string", "defaultValue": "0.0.0.0" },
         { "name": "WAIT_FOR_HOSTS_PREFIX", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}." },
         // Note: we don't need/want to wait for the device services, they are resolved when called
-        { "name": "WAIT_FOR_HOSTS", "type": "string", "defaultValue": "consul:8500 redis core-metadata:59881" }
+        { "name": "WAIT_FOR_HOSTS", "type": "string", "defaultValue": "consul:8500 core-metadata:59881" }
     ],
     "deployment": {
         "services": {
             "${SERVICE_NAME}": {
                 "image": "${DOCKER_IMAGE_BASE}:${DOCKER_IMAGE_VERSION}",
                 // uncomment this entrypoint to enable wait script
-                // "entrypoint": ["/wait.sh", "${ENTRYPOINT}"],
+                 "entrypoint": ["/wait.sh", "${ENTRYPOINT}"],
                 "command": ["-cp=consul.http://${EDGE_OWNER}.${EDGE_DEPLOY}.consul:8500", "--registry", "--confdir=/res"],
                 "binds": [
                     "${APP_BIND_HORIZON_DIR}/scripts/wait.sh:/wait.sh:ro"

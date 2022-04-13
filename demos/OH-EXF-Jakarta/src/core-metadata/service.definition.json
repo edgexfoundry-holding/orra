@@ -33,14 +33,14 @@
         { "name": "SERVICE_HOST", "type": "string", "defaultValue": "${SERVICE_NAME}" },
         { "name": "SERVICE_SERVERBINDADDR", "type": "string", "defaultValue": "0.0.0.0" },
         { "name": "WAIT_FOR_HOSTS_PREFIX", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}." },
-        { "name": "WAIT_FOR_HOSTS", "type": "string", "defaultValue": "consul:8500 redis" }
+        { "name": "WAIT_FOR_HOSTS", "type": "string", "defaultValue": "consul:8500 redis:6379" }
     ],
     "deployment": {
         "services": {
             "${SERVICE_NAME}": {
                 "image": "${DOCKER_IMAGE_BASE}:${DOCKER_IMAGE_VERSION}",
                 // uncomment this entrypoint to enable wait script
-                // "entrypoint": ["/wait.sh", "${ENTRYPOINT}"],
+                 "entrypoint": ["/wait.sh", "${ENTRYPOINT}"],
                 "command": ["-cp=consul.http://${EDGE_OWNER}.${EDGE_DEPLOY}.consul:8500", "--registry", "--confdir=/res"],
                 "binds": [
                     "${APP_BIND_HORIZON_DIR}/scripts/wait.sh:/wait.sh:ro"

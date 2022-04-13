@@ -5,56 +5,6 @@
   "public": false,
   "services": [
     {
-      "serviceUrl": "${EDGE_OWNER}.${EDGE_DEPLOY}.deploy-data",
-      "serviceOrgid": "${HZN_ORG_ID}",
-      "serviceArch": "${ARCH}",
-      "serviceVersions": [
-        {
-          "version": "${VERSION_deploy_data}"
-        }
-      ]
-    },
-    {
-      "serviceUrl": "${EDGE_OWNER}.${EDGE_DEPLOY}.consul",
-      "serviceOrgid": "${HZN_ORG_ID}",
-      "serviceArch": "${ARCH}",
-      "serviceVersions": [
-        {
-          "version": "${VERSION_consul}"
-        }
-      ]
-    },
-    {
-      "serviceUrl": "${EDGE_OWNER}.${EDGE_DEPLOY}.redis",
-      "serviceOrgid": "${HZN_ORG_ID}",
-      "serviceArch": "${ARCH}",
-      "serviceVersions": [
-        {
-          "version": "${VERSION_redis}"
-        }
-      ]
-    },
-    {
-      "serviceUrl": "${EDGE_OWNER}.${EDGE_DEPLOY}.mqtt-broker",
-      "serviceOrgid": "${HZN_ORG_ID}",
-      "serviceArch": "${ARCH}",
-      "serviceVersions": [
-        {
-          "version": "${VERSION_mqtt_broker}"
-        }
-      ]
-    },
-    {
-      "serviceUrl": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-metadata",
-      "serviceOrgid": "${HZN_ORG_ID}",
-      "serviceArch": "${ARCH}",
-      "serviceVersions": [
-        {
-          "version": "${VERSION_core_metadata}"
-        }
-      ]
-    },
-    {
       "serviceUrl": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-command",
       "serviceOrgid": "${HZN_ORG_ID}",
       "serviceArch": "${ARCH}",
@@ -65,32 +15,12 @@
       ]
     },
     {
-      "serviceUrl": "${EDGE_OWNER}.${EDGE_DEPLOY}.device-mqtt",
-      "serviceOrgid": "${HZN_ORG_ID}",
-      "serviceArch": "${ARCH}",
-      "serviceVersions": [
-        {
-          "version": "${VERSION_device_mqtt}"
-        }
-      ]
-    },
-    {
       "serviceUrl": "${EDGE_OWNER}.${EDGE_DEPLOY}.asc-mqtt",
       "serviceOrgid": "${HZN_ORG_ID}",
       "serviceArch": "${ARCH}",
       "serviceVersions": [
         {
           "version": "${VERSION_asc_mqtt}"
-        }
-      ]
-    },
-    {
-      "serviceUrl": "${EDGE_OWNER}.${EDGE_DEPLOY}.device-onvif-camera",
-      "serviceOrgid": "${HZN_ORG_ID}",
-      "serviceArch": "${ARCH}",
-      "serviceVersions": [
-        {
-          "version": "${VERSION_device_onvif_camera}"
         }
       ]
     },
