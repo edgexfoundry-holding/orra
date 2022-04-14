@@ -17,9 +17,10 @@ check_timeout() {
 
 is_host_alive() {
     if [ -z "$2" ]; then
+        echo "Checking for host "
         nslookup "$1" >/dev/null 2>&1
     else
-        nc -z "$1" "$2" >/dev/null 2>&1
+        nc -w 1 -z "$1" "$2" >/dev/null 2>&1
     fi
 }
 

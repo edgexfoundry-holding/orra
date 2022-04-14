@@ -24,6 +24,12 @@
             "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-metadata",
             "version": "${VERSION_core_metadata}",
             "arch": "${ARCH}"
+        },
+        {
+            "org": "${HZN_ORG_ID}",
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.mqtt-broker",
+            "version": "${VERSION_mqtt_broker}",
+            "arch": "${ARCH}"
         }
     ],
     "userInput": [
@@ -46,7 +52,7 @@
             "${SERVICE_NAME}": {
                 "image": "${DOCKER_IMAGE_BASE}:${DOCKER_IMAGE_VERSION}",
                 // uncomment this entrypoint to enable wait script
-                 "entrypoint": ["/wait.sh", "${ENTRYPOINT}"],
+                "entrypoint": ["/wait.sh", "${ENTRYPOINT}"],
                 "command": ["-cp=consul.http://${EDGE_OWNER}.${EDGE_DEPLOY}.consul:8500", "--registry", "--confdir=/res"],
                 "binds": [
                     "${APP_BIND_HORIZON_DIR}/scripts/wait.sh:/wait.sh:ro"

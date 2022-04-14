@@ -5,12 +5,13 @@ export ARCH ?= $(shell hzn architecture)
 
 # Note: this must be in sorted order based on dependencies
 SUBPROJECTS = deploy-data redis consul mqtt-broker core-metadata device-mqtt \
-				asc-mqtt device-onvif-camera core-command edgex-ui
+			  device-onvif-camera asc-mqtt core-command edgex-ui
 
 PATTERNS = edgex-jakarta
 
 NODE_POLICY ?= horizon/node-policy.json
 
+# do not let it be run in parallel to ensure dependency order is preserved
 .NOTPARALLEL:
 
 # make sure version is defined for all subproject
