@@ -15,19 +15,15 @@
         }
     ],
     "userInput": [
-//        { "name": "CONSUL_BIND_INTERFACE", "type": "string", "defaultValue": "eth0" }
     ],
     "deployment": {
         "services": {
             "${SERVICE_NAME}": {
                 "image": "${DOCKER_IMAGE_BASE}:${DOCKER_IMAGE_VERSION}",
                 "command": ["agent", "-ui", "-bootstrap", "-server", "-client=0.0.0.0", "-bind=127.0.0.1"],
-//                "entrypoint": ["/custom-entrypoint.sh"],
-//                "command": [""],
                 "binds": [
                     "${APP_BIND_HORIZON_DIR}/consul-config:/consul/config:rw",
-                    "${APP_BIND_HORIZON_DIR}/consul-data:/consul/data:rw",
-                    "${APP_BIND_HORIZON_DIR}/consul/bin/custom-entrypoint.sh:/custom-entrypoint.sh:ro"
+                    "${APP_BIND_HORIZON_DIR}/consul-data:/consul/data:rw"
                 ],
                 "ports": [
                     {

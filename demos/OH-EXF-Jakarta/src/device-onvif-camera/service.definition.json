@@ -26,7 +26,6 @@
         { "name": "MESSAGEQUEUE_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.redis" },
         { "name": "REGISTRY_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.consul" },
         { "name": "SERVICE_HOST", "type": "string", "defaultValue": "${SERVICE_NAME}" },
-        { "name": "SERVICE_SERVERBINDADDR", "type": "string", "defaultValue": "0.0.0.0" },
         { "name": "DRIVER_CREDENTIALSRETRYTIME", "type": "int", "defaultValue": "120" },
         { "name": "DRIVER_CREDENTIALSRETRYWAIT", "type": "int", "defaultValue": "1" },
         { "name": "DRIVER_REQUESTTIMEOUT", "type": "int", "defaultValue": "5" },
@@ -41,14 +40,13 @@
         "services": {
             "${SERVICE_NAME}": {
                 "image": "${DOCKER_IMAGE_BASE}:${DOCKER_IMAGE_VERSION}",
-                // uncomment this entrypoint to enable wait script
                 "entrypoint": ["/wait.sh", "${ENTRYPOINT}"],
                 "command": ["-cp=consul.http://${EDGE_OWNER}.${EDGE_DEPLOY}.consul:8500", "--registry", "--confdir=/res"],
                 "binds": [
                     "${APP_BIND_HORIZON_DIR}/scripts/wait.sh:/wait.sh:ro"
                 ],
                 "ports": [{
-                    "HostIP": "0.0.0.0",
+                    "HostIP": "127.0.0.1",
                     "HostPort": "59985:59985/tcp"
                 }]
             }
