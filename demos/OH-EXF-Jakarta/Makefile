@@ -3,11 +3,12 @@ include make/base.mk
 
 export ARCH ?= $(shell hzn architecture)
 
-# Note: this must be in sorted order based on dependencies
-SUBPROJECTS = deploy-data redis consul mqtt-broker core-metadata device-mqtt \
-			  device-onvif-camera asc-mqtt core-command edgex-ui
+# Note: These must be in sorted order based on their dependencies
+# in order for everything to build properly on first build
+SUBPROJECTS = deploy-data model-data redis consul mqtt-broker core-metadata device-mqtt \
+			  device-onvif-camera asc-mqtt core-command edgex-ui edge-video-analytics
 
-PATTERNS = edgex-jakarta
+PATTERNS = edgex-jakarta-edge-video-analytics edgex-jakarta edge-video-analytics
 
 NODE_POLICY ?= horizon/node-policy.json
 

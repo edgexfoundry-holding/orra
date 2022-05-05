@@ -31,4 +31,4 @@ push: build
 
 src:
 	@echo "cloning..."
-	git clone https://github.com/edgexfoundry-holding/device-onvif-camera.git src
+	git clone --branch discovery-probe https://github.com/ajcasagrande/device-onvif-camera.git src

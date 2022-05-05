@@ -8,3 +8,5 @@ demos/.DS_Store
 .hzn.json.tmp.mk
 device-onvif-camera/src
 build/
+model-data/src
+model-data/models

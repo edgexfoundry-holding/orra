@@ -5,6 +5,8 @@ export VERSION_consul ?= 1.10.3
 export VERSION_mqtt_broker ?= 2.0.12
 export VERSION_device_onvif_camera ?= 0.0.0
 export VERSION_deploy_data ?= 0.1.0
+export VERSION_edge_video_analytics ?= 0.7.0
+export VERSION_model_data ?= 0.7.0
 
 export VERSION_asc_mqtt ?= $(EDGEX_CORE_VERSION)
 export VERSION_core_command ?= $(EDGEX_CORE_VERSION)
@@ -12,4 +14,6 @@ export VERSION_core_metadata ?= $(EDGEX_CORE_VERSION)
 export VERSION_device_mqtt ?= $(EDGEX_CORE_VERSION)
 export VERSION_edgex_ui ?= $(EDGEX_CORE_VERSION)
 
-export PATTERN_VERSION_edgex_jakarta ?= 0.0.7
+export PATTERN_VERSION_edgex_jakarta ?= 0.1.0
+export PATTERN_VERSION_edgex_jakarta_edge_video_analytics ?= 0.1.0
+export PATTERN_VERSION_edge_video_analytics ?= 0.1.0

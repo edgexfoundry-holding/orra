@@ -31,6 +31,7 @@
         { "name": "NOTIFICATIONS_SENDER", "type": "string", "defaultValue": "edgex-core-metadata" },
         { "name": "REGISTRY_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.consul" },
         { "name": "SERVICE_HOST", "type": "string", "defaultValue": "${SERVICE_NAME}" },
+        { "name": "SERVICE_SERVERBINDADDR", "type": "string", "defaultValue": "0.0.0.0" },
         { "name": "WAIT_FOR_HOSTS_PREFIX", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}." },
         { "name": "WAIT_FOR_HOSTS", "type": "string", "defaultValue": "consul:8500 redis:6379" }
     ],
