@@ -1,7 +1,7 @@
 {
     "org": "${HZN_ORG_ID}",
-    "label": "${SERVICE_NAME}-${ARCH}",
-    "url": "${SERVICE_NAME}",
+    "label": "${SERVICE_URL}-${ARCH}",
+    "url": "${SERVICE_URL}",
     "version": "${SERVICE_VERSION}",
     "arch": "${ARCH}",
     "public": false,
@@ -30,15 +30,15 @@
         { "name": "EDGEX_SECURITY_SECRET_STORE", "type": "boolean", "defaultValue": "false" },
         { "name": "NOTIFICATIONS_SENDER", "type": "string", "defaultValue": "edgex-core-metadata" },
         { "name": "REGISTRY_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.consul" },
-        { "name": "SERVICE_HOST", "type": "string", "defaultValue": "${SERVICE_NAME}" },
+        { "name": "SERVICE_HOST", "type": "string", "defaultValue": "${SERVICE_URL}" },
         { "name": "SERVICE_SERVERBINDADDR", "type": "string", "defaultValue": "0.0.0.0" },
         { "name": "WAIT_FOR_HOSTS_PREFIX", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}." },
         { "name": "WAIT_FOR_HOSTS", "type": "string", "defaultValue": "consul:8500 redis:6379" }
     ],
     "deployment": {
         "services": {
-            "${SERVICE_NAME}": {
-                "image": "${DOCKER_IMAGE_BASE}:${DOCKER_IMAGE_VERSION}",
+            "${SERVICE_URL}": {
+                "image": "${DOCKER_FULL_IMAGE_NAME}",
                 "entrypoint": ["/wait.sh", "${ENTRYPOINT}"],
                 "command": ["-cp=consul.http://${EDGE_OWNER}.${EDGE_DEPLOY}.consul:8500", "--registry", "--confdir=/res"],
                 "binds": [

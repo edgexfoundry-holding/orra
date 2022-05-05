@@ -8,6 +8,7 @@ labels:
   - "edge-video-analytics"
 deviceResources:
   - name: "inference-event"
+    isHidden: true # resource is only async
     description: "A json message containing the inference event"
     properties:
       valueType: "String"

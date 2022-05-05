@@ -23,10 +23,14 @@ MAKEFLAGS += --warn-undefined-variables --no-builtin-rules --no-print-directory
 
 export ARCH ?= $(shell hzn architecture)
 
+-include $(make_base_dir:/=)/../env.mk
+
 include $(make_base_dir:/=)/helpers.mk
 include $(make_base_dir:/=)/env.check.mk
 
 # include all the version numbers
 include $(make_base_dir:/=)/../versions.mk
+# include default env values
+include $(make_base_dir:/=)/../defaults.mk
 
 endif # BASE_MK_DEFINED

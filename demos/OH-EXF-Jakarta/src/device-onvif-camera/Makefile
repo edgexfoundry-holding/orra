@@ -3,32 +3,30 @@ include ../../make/base.mk
 
 # Define and export service specific variables
 export VERSION_SUFFIX=-dev
-export IMAGE_NAME ?= $(current_folder_name)
-export LOCAL_DOCKER_BASE ?= localhost:5000
-export DOCKER_IMAGE_BASE ?= $(LOCAL_DOCKER_BASE:%=%/)$(IMAGE_NAME)
+export DOCKER_REGISTRY_BASE=$(LOCAL_DOCKER_REGISTRY:%=%/)
+export DOCKER_ORG=$(DOCKER_EDGEX_ORG)
 
 # Include service template file
 include ../../make/service-template.mk
 
-.PHONY: build push
+.PHONY: build push clean
 
-publish-service: build push fetch $(SERVICE_JSON_OUTPUT)
+publish-service: build push $(SERVICE_JSON_OUTPUT)
 	hzn exchange service publish -O -f "$(SERVICE_JSON_OUTPUT)" --pull-image
 
-build: src fetch
+build: src
 	@echo "building docker image..."
 	make -C src docker
 
-fetch:
-	@echo "fetching latest code..."
-	cd src && git pull
-
 push: build
 	@echo "tagging docker image..."
-	docker tag "$(DOCKER_BASE)/$(IMAGE_NAME):$(DOCKER_IMAGE_VERSION)" "$(DOCKER_IMAGE_BASE):$(DOCKER_IMAGE_VERSION)"
+	docker tag "edgexfoundry/$(IMAGE_NAME):$(DOCKER_IMAGE_VERSION)" "${DOCKER_FULL_IMAGE_NAME}"
 	@echo "pushing docker image..."
-	docker push "$(DOCKER_IMAGE_BASE):$(DOCKER_IMAGE_VERSION)"
+	docker push "${DOCKER_FULL_IMAGE_NAME}"
+
+clean:
+	rm -rf $(SRC)
 
 src:
 	@echo "cloning..."
-	git clone --branch discovery-probe https://github.com/ajcasagrande/device-onvif-camera.git src
+	git clone --depth=1 --branch $(TAG_device_onvif_camera) $(REPO_URL_device_onvif_camera) src

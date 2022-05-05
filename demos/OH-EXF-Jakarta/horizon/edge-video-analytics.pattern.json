@@ -1,7 +1,7 @@
 {
   "name": "pattern-${EDGE_OWNER}.${EDGE_DEPLOY}.${PATTERN_NAME}-${PATTERN_VERSION}",
   "label": "Edge Video Analytics Services",
-  "description": "Pattern for running Edge Video Analytics Services",
+  "description": "Pattern for running only Edge Video Analytics Services",
   "public": false,
   "services": [
     {

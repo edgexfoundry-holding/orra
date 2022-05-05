@@ -2,38 +2,33 @@
 include ../../make/base.mk
 
 # Define and export service specific variables
-export VERSION_SUFFIX=
-export IMAGE_NAME ?= $(current_folder_name)
-export LOCAL_DOCKER_BASE ?= localhost:5000
-export DOCKER_IMAGE_BASE ?= $(LOCAL_DOCKER_BASE:%=%/)$(IMAGE_NAME)
+export DOCKER_REGISTRY_BASE=$(LOCAL_DOCKER_REGISTRY:%=%/)
 
 # Include service template file
 include ../../make/service-template.mk
 
-GITHUB_URL = https://github.com/intel/edge-video-analytics-microservice.git
 SRC = src
 MODELS_LIST = models.list.yml
 
-.PHONY: build push
+.PHONY: build push clean
 
-publish-service: build push fetch $(SERVICE_JSON_OUTPUT)
+publish-service: build push $(SERVICE_JSON_OUTPUT)
 	hzn exchange service publish -O -f "$(SERVICE_JSON_OUTPUT)" --pull-image
 
-fetch:
-	@echo "fetching latest code..."
-	cd src && git pull origin "v$(SERVICE_VERSION)$(VERSION_SUFFIX)"
-
-build: $(SRC) fetch download-models patch-pipelines
+build: $(SRC) download-models patch-pipelines
 	@echo "building docker image..."
-	docker build -t "$(DOCKER_IMAGE_BASE):$(DOCKER_IMAGE_VERSION)" .
+	docker build -t "${DOCKER_FULL_IMAGE_NAME}" .
 
 push: build
 	@echo "pushing docker image..."
-	docker push "$(DOCKER_IMAGE_BASE):$(DOCKER_IMAGE_VERSION)"
+	docker push "${DOCKER_FULL_IMAGE_NAME}"
 
 $(SRC):
 	@echo "cloning..."
-	git clone --branch "v$(SERVICE_VERSION)$(VERSION_SUFFIX)" $(GITHUB_URL) $@
+	git clone --depth=1 --branch $(TAG_model_downloader) $(REPO_URL_model_downloader) $@
+
+clean:
+	rm -rf $(SRC)
 
 download-models: $(SRC) $(MODELS_LIST)
 	chmod +x $(SRC)/tools/model_downloader/model_downloader.sh $(SRC)/docker/run.sh

@@ -2,17 +2,26 @@
 ifndef SERVICE_TEMPLATE_MK_DEFINED
 SERVICE_TEMPLATE_MK_DEFINED := 1
 
-export ENTRYPOINT ?= /$(current_folder_name)
-export IMAGE_NAME ?= $(current_folder_name)
-export DOCKER_IMAGE_BASE ?= $(DOCKER_BASE)/$(IMAGE_NAME)
+export SERVICE_NAME ?= $(current_folder_name)
+export IMAGE_NAME ?= $(SERVICE_NAME)
+export ENTRYPOINT ?= /$(IMAGE_NAME)
+export SERVICE_URL ?= $(EDGE_OWNER).$(EDGE_DEPLOY).$(SERVICE_NAME)
+
+export DOCKER_REGISTRY_BASE ?= $(DOCKER_REGISTRY:%=%/)
+
 export VERSION_SUFFIX ?=
-export SERVICE_NAME ?= $(EDGE_OWNER).$(EDGE_DEPLOY).$(IMAGE_NAME)
-export SERVICE_VERSION ?= $(call version_of,$(IMAGE_NAME))
+export SERVICE_VERSION ?= $(call version_of,$(SERVICE_NAME))
 export DOCKER_IMAGE_VERSION ?= $(SERVICE_VERSION)$(VERSION_SUFFIX)
+
+export DOCKER_ORG ?=
+export DOCKER_ORG_BASE=$(DOCKER_ORG:%=%/)
+
+# full docker image name including registry, organization, image name, and version
+export DOCKER_FULL_IMAGE_NAME=${DOCKER_REGISTRY_BASE}${DOCKER_ORG_BASE}${IMAGE_NAME}:${DOCKER_IMAGE_VERSION}
 
 BUILD_DIR = ../../build
 SERVICE_JSON_INPUT = service.definition.json
-SERVICE_JSON_OUTPUT = $(BUILD_DIR)/$(IMAGE_NAME).service.json
+SERVICE_JSON_OUTPUT = $(BUILD_DIR)/$(SERVICE_NAME).service.json
 
 .PHONY: all publish-service deploy-policy print-service
 

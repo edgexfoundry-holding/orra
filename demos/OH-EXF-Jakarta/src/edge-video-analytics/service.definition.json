@@ -1,7 +1,7 @@
 {
     "org": "${HZN_ORG_ID}",
-    "label": "${SERVICE_NAME}-${ARCH}",
-    "url": "${SERVICE_NAME}",
+    "label": "${SERVICE_URL}-${ARCH}",
+    "url": "${SERVICE_URL}",
     "version": "${SERVICE_VERSION}",
     "arch": "${ARCH}",
     "public": false,
@@ -27,8 +27,8 @@
     ],
     "deployment": {
         "services": {
-            "${SERVICE_NAME}": {
-                "image": "${DOCKER_IMAGE_BASE}:${DOCKER_IMAGE_VERSION}",
+            "${SERVICE_URL}": {
+                "image": "${DOCKER_FULL_IMAGE_NAME}",
                 "entrypoint": ["${ENTRYPOINT}"],
                 "privileged": true,
                 "binds": [

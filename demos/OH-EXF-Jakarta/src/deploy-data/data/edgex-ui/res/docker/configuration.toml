@@ -1,5 +1,5 @@
 [Service]
-Host = "${SERVICE_NAME}"
+Host = "${SERVICE_URL}"
 Port = 4000
 Labels = []
 OpenMsg = "edgeX ui started"

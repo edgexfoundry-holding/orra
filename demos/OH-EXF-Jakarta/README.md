@@ -7,8 +7,6 @@ The following environment variables **must** be set in order to run the make scr
 EDGE_OWNER=<sg.edge>
 # Lets you manage and deploy different group of code across dev, demo, test, prod or project
 EDGE_DEPLOY=<dev>
-# Typically, this is set to 'edgexfoundry' in this case
-DOCKER_BASE=<your-docker-account-base>
 HZN_ORG_ID=<org_id>
 HZN_EXCHANGE_USER_AUTH=iamapikey:<your-iamapikey>
 # Root bind directory for app volumes
@@ -28,10 +26,10 @@ docker run -d -p 5000:5000 --restart=always --name registry registry:2
 ### External Docker Registry
 ```shell
 # build and push device onvif camera to external docker registry
-make -C src/device-onvif-camera LOCAL_DOCKER_BASE=<your-docker-registry-base>
+make -C src/device-onvif-camera LOCAL_DOCKER_REGISTRY=<your-docker-registry-base>
 
 # build and push deploy data to external docker registry
-make -C src/deploy-data LOCAL_DOCKER_BASE=<your-docker-registry-base>
+make -C src/deploy-data LOCAL_DOCKER_REGISTRY=<your-docker-registry-base>
 ```
 
 ### Networking limitations and issues

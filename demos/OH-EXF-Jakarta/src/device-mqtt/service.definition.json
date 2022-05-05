@@ -1,7 +1,7 @@
 {
     "org": "${HZN_ORG_ID}",
-    "label": "${SERVICE_NAME}-${ARCH}",
-    "url": "${SERVICE_NAME}",
+    "label": "${SERVICE_URL}-${ARCH}",
+    "url": "${SERVICE_URL}",
     "version": "${SERVICE_VERSION}",
     "arch": "${ARCH}",
     "public": false,
@@ -38,7 +38,7 @@
         { "name": "MESSAGEQUEUE_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.redis" },
         { "name": "MQTTBROKERINFO_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.mqtt-broker" },
         { "name": "REGISTRY_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.consul" },
-        { "name": "SERVICE_HOST", "type": "string", "defaultValue": "${SERVICE_NAME}" },
+        { "name": "SERVICE_HOST", "type": "string", "defaultValue": "${SERVICE_URL}" },
         { "name": "SERVICE_SERVERBINDADDR", "type": "string", "defaultValue": "0.0.0.0" },
         { "name": "DATABASES_PRIMARY_HOST", "type": "string",  "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.redis" },
         { "name": "DEVICE_DEVICESDIR", "type": "string",  "defaultValue": "/camera-device-mqtt/devices" },
@@ -51,8 +51,8 @@
     ],
     "deployment": {
         "services": {
-            "${SERVICE_NAME}": {
-                "image": "${DOCKER_IMAGE_BASE}:${DOCKER_IMAGE_VERSION}",
+            "${SERVICE_URL}": {
+                "image": "${DOCKER_FULL_IMAGE_NAME}",
                 "entrypoint": ["/wait.sh", "${ENTRYPOINT}"],
                 "command": ["-cp=consul.http://${EDGE_OWNER}.${EDGE_DEPLOY}.consul:8500", "--registry"],
                 "binds": [

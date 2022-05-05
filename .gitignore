@@ -10,3 +10,4 @@ device-onvif-camera/src
 build/
 model-data/src
 model-data/models
+env.mk

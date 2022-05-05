@@ -2,9 +2,7 @@
 include ../../make/base.mk
 
 # Define and export service specific variables
-export IMAGE_NAME ?= $(current_folder_name)
-export LOCAL_DOCKER_BASE ?= localhost:5000
-export DOCKER_IMAGE_BASE ?= $(LOCAL_DOCKER_BASE:%=%/)$(IMAGE_NAME)
+export DOCKER_REGISTRY_BASE=$(LOCAL_DOCKER_REGISTRY:%=%/)
 
 # Include service template file
 include ../../make/service-template.mk
@@ -16,8 +14,8 @@ publish-service: build push $(SERVICE_JSON_OUTPUT)
 
 build:
 	@echo "building docker image..."
-	docker build -t "$(DOCKER_IMAGE_BASE):$(DOCKER_IMAGE_VERSION)" .
+	docker build -t "${DOCKER_FULL_IMAGE_NAME}" .
 
 push: build
 	@echo "pushing docker image..."
-	docker push "$(DOCKER_IMAGE_BASE):$(DOCKER_IMAGE_VERSION)"
+	docker push "${DOCKER_FULL_IMAGE_NAME}"

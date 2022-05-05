@@ -1,8 +1,6 @@
 # Include base Makefile
 include make/base.mk
 
-export ARCH ?= $(shell hzn architecture)
-
 # Note: These must be in sorted order based on their dependencies
 # in order for everything to build properly on first build
 SUBPROJECTS = deploy-data model-data redis consul mqtt-broker core-metadata device-mqtt \
@@ -15,8 +13,11 @@ NODE_POLICY ?= horizon/node-policy.json
 # do not let it be run in parallel to ensure dependency order is preserved
 .NOTPARALLEL:
 
-# make sure version is defined for all subproject
+# make sure version is defined for all subprojects
 $(call require_versions_for,$(SUBPROJECTS))
+
+# make sure version is defined for all patterns
+$(call require_versions_for,$(PATTERNS:%=PATTERN_%))
 
 BUILD_DIR = build
 
@@ -44,7 +45,7 @@ $(SUBPROJECTS:%=print-%): print-% :
 
 $(PATTERNS:%=publish-pattern-%): publish-pattern-% : $(BUILD_DIR)/%.pattern.json
 	export PATTERN_NAME="$*"; \
-	export PATTERN_VERSION="$(PATTERN_VERSION_$(subst -,_,$*))"; \
+	export PATTERN_VERSION="$(VERSION_PATTERN_$(subst -,_,$*))"; \
 	hzn exchange pattern publish -f "$(BUILD_DIR)/$*.pattern.json"
 
 # print out the pattern.json file using specific
@@ -66,7 +67,7 @@ force-clean: cleanup
 
 register:
 	$(call require_arg,p,$(word 1,$(PATTERNS)))
-	hzn register -p "pattern-$(EDGE_OWNER).$(EDGE_DEPLOY).$(p)-$(PATTERN_VERSION_$(subst -,_,$(p)))" \
+	hzn register -p "pattern-$(EDGE_OWNER).$(EDGE_DEPLOY).$(p)-$(VERSION_PATTERN_$(subst -,_,$(p)))" \
 		"$(addprefix --policy=,$(NODE_POLICY))" --input-file=
 	sudo mkdir -p "$(APP_BIND_HORIZON_DIR)"
 	sudo chmod 777 "$(APP_BIND_HORIZON_DIR)"
