@@ -1,0 +1,36 @@
+[Service]
+Host = "${SERVICE_PREFIX}edgex-ui"
+Port = 4000
+Labels = []
+OpenMsg = "edgeX ui started"
+StaticResourcesPath = "static/web"
+
+#Using an default memory db automatically if not configed here.
+[Database]
+Host = ""
+Name = ""
+Port = 0
+Username = "su"
+Password = "su"
+  [Database.Scheme]
+  User = "user"
+
+[Clients]
+    [Clients.Metadata]
+    Protocol = 'http'
+    Host = "${CLIENTS_CORE_METADATA_HOST}"
+    Port = 59881
+    PathPrefix = "/core-metadata"
+
+    [Clients.CoreCommand]
+    Protocol = 'http'
+    Host = "${CLIENTS_CORE_COMMAND_HOST}"
+    Port = 59882
+    PathPrefix = "/core-command"
+
+[Registry]
+Host = "${REGISTRY_HOST}"
+Port = 8500
+Type = "consul"
+ConfigRegistryStem = "edgex/appservices/"
+ServiceVersion = "2.0"

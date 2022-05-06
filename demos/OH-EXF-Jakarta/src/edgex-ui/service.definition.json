@@ -12,18 +12,23 @@
             "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-metadata",
             "version": "${VERSION_core_metadata}",
             "arch": "${ARCH}"
+        },
+        {
+            "org": "${HZN_ORG_ID}",
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-command",
+            "version": "${VERSION_core_command}",
+            "arch": "${ARCH}"
+        },
+        {
+            "org": "${HZN_ORG_ID}",
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.consul",
+            "version": "${VERSION_consul}",
+            "arch": "${ARCH}"
         }
     ],
     "userInput": [
         // Note: EdgeX UI does not support ENV overrides, and thus the configuration.toml is necessary
         { "name": "EDGEX_SECURITY_SECRET_STORE", "type": "boolean", "defaultValue": "false" },
-        { "name": "CLIENTS_CORE_COMMAND_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-command" },
-        { "name": "CLIENTS_CORE_DATA_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-data" },
-        { "name": "CLIENTS_METADATA_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-metadata" },
-        { "name": "CLIENTS_NOTIFICATION_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.support-notifications" },
-        { "name": "CLIENTS_SCHEDULER_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.support-scheduler" },
-        { "name": "DATABASES_PRIMARY_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.redis" },
-        { "name": "REGISTRY_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.consul" },
         { "name": "SERVICE_HOST", "type": "string", "defaultValue": "${SERVICE_URL}" },
         { "name": "SERVICE_SERVERBINDADDR", "type": "string", "defaultValue": "0.0.0.0" }
     ],

@@ -25,9 +25,3 @@ export VERSION_edgex_ui ?= $(EDGEX_CORE_VERSION)
 export VERSION_PATTERN_edgex_jakarta ?= 0.1.0
 export VERSION_PATTERN_edgex_jakarta_edge_video_analytics ?= 0.1.0
 export VERSION_PATTERN_edge_video_analytics ?= 0.1.0
-
-#### Dependency Versions ####
-# These are the versions of various dependencies that are used during th building
-# of the service images. They are needed when building a docker image based
-# on existing source code.
-

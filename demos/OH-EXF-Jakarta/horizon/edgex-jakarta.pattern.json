@@ -5,16 +5,6 @@
   "public": false,
   "services": [
     {
-      "serviceUrl": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-command",
-      "serviceOrgid": "${HZN_ORG_ID}",
-      "serviceArch": "${ARCH}",
-      "serviceVersions": [
-        {
-          "version": "${VERSION_core_command}"
-        }
-      ]
-    },
-    {
       "serviceUrl": "${EDGE_OWNER}.${EDGE_DEPLOY}.asc-mqtt",
       "serviceOrgid": "${HZN_ORG_ID}",
       "serviceArch": "${ARCH}",

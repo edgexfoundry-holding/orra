@@ -14,8 +14,8 @@ publish-service: build push $(SERVICE_JSON_OUTPUT)
 
 build:
 	@echo "building docker image..."
-	docker build -t "${DOCKER_FULL_IMAGE_NAME}" .
+	docker build -f "Dockerfile" -t "$(DOCKER_FULL_IMAGE_NAME)" ../
 
 push: build
 	@echo "pushing docker image..."
-	docker push "${DOCKER_FULL_IMAGE_NAME}"
+	docker push "$(DOCKER_FULL_IMAGE_NAME)"

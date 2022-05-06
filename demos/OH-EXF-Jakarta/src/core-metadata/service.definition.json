@@ -24,8 +24,6 @@
         { "name": "CLIENTS_CORE_COMMAND_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-command" },
         { "name": "CLIENTS_CORE_DATA_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-data" },
         { "name": "CLIENTS_CORE_METADATA_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-metadata" },
-        { "name": "CLIENTS_SUPPORT_NOTIFICATIONS_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.support-notifications" },
-        { "name": "CLIENTS_SUPPORT_SCHEDULER_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.support-scheduler" },
         { "name": "DATABASES_PRIMARY_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.redis" },
         { "name": "EDGEX_SECURITY_SECRET_STORE", "type": "boolean", "defaultValue": "false" },
         { "name": "NOTIFICATIONS_SENDER", "type": "string", "defaultValue": "edgex-core-metadata" },

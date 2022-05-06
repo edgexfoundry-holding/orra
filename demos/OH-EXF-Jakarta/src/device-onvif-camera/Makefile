@@ -20,9 +20,9 @@ build: src
 
 push: build
 	@echo "tagging docker image..."
-	docker tag "edgexfoundry/$(IMAGE_NAME):$(DOCKER_IMAGE_VERSION)" "${DOCKER_FULL_IMAGE_NAME}"
+	docker tag "edgexfoundry/$(IMAGE_NAME):$(DOCKER_IMAGE_VERSION)" "$(DOCKER_FULL_IMAGE_NAME)"
 	@echo "pushing docker image..."
-	docker push "${DOCKER_FULL_IMAGE_NAME}"
+	docker push "$(DOCKER_FULL_IMAGE_NAME)"
 
 clean:
 	rm -rf $(SRC)
