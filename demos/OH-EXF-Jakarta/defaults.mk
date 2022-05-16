@@ -20,6 +20,8 @@ export TAG_device_onvif_camera ?= main
 export REPO_URL_model_downloader ?= https://github.com/intel/edge-video-analytics-microservice.git
 # branch or tag name for model downloader tool
 export TAG_model_downloader ?= v0.7.0
+# full image name and version of openvino data image to use when downloading and converting models
+export OPENVINO_DATA_IMAGE ?= openvino/ubuntu20_data_dev:2021.4.2
 
 # root volume mount point for services
 export APP_BIND_HORIZON_DIR ?= /var/local/horizon

@@ -6,11 +6,14 @@ as Intel's Edge Video Analytics on the Open Horizon platform.
 The following environment variables **must** be set in order to run the make scripts.
 ```shell
 # Sets the scope so that multiple users can use the same instance
-EDGE_OWNER=<sg.edge>
+export EDGE_OWNER=<sg.edge>
 # Lets you manage and deploy different group of code across dev, demo, test, prod or project
-EDGE_DEPLOY=<dev>
-HZN_ORG_ID=<org_id>
-HZN_EXCHANGE_USER_AUTH=iamapikey:<your-iamapikey>
+export EDGE_DEPLOY=<dev>
+export HZN_ORG_ID=<org_id>
+export HZN_EXCHANGE_USER_AUTH=iamapikey:<your-iamapikey>
+export APP_BIND_HORIZON_DIR=/var/local/horizon
+# This is the docker registry/account where locally-built images are pushed to
+export LOCAL_DOCKER_REGISTRY=<your-docker-registry-base>
 ```
 
 ### Versions
@@ -22,22 +25,13 @@ Check [defaults.mk](defaults.mk) for various env vars you can override.
 Optionally you can add a file called `env.mk` and set your overrides in there.
 
 ## Publish
-### localhost
-Right now, because both the `device-onvif-camera`, `deploy-data`, and `model-data` docker images are not 
-in a docker registry, the make scripts will automatically push them to a registry running on `localhost:5000`.
+Right now, because the `device-onvif-camera`, `deploy-data`, and `model-data` docker images are not 
+in a docker registry, the make scripts will automatically push them to a registry defined via
+`LOCAL_DOCKER_REGISTRY`. If you wish, you can run a local docker registry at `localhost:5000` using the following
+command:
 
-Use the following commands to run a local docker registry:
 ```shell
 docker run -d -p 5000:5000 --restart=always --name registry registry:2
-```
-
-### External Docker Registry
-```shell
-# build and push device onvif camera to external docker registry
-make -C src/device-onvif-camera LOCAL_DOCKER_REGISTRY=<your-docker-registry-base>
-
-# build and push deploy data to external docker registry
-make -C src/deploy-data LOCAL_DOCKER_REGISTRY=<your-docker-registry-base>
 ```
 
 ### Publish all services and patterns

@@ -2,9 +2,9 @@
 *.bkp
 *.dtmp
 
-device-onvif-camera/src
-model-data/src
-model-data/models
+src/device-onvif-camera/src
+src/model-data/src
+src/model-data/models
 
 build/
 env.mk

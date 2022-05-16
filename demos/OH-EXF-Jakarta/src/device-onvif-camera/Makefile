@@ -25,7 +25,7 @@ push: build
 	docker push "$(DOCKER_FULL_IMAGE_NAME)"
 
 clean:
-	rm -rf $(SRC)
+	rm -rf $(SRC_DIR)
 
 src:
 	@echo "cloning..."
