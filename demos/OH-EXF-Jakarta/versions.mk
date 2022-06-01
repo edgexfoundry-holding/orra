@@ -4,10 +4,12 @@
 export VERSION_redis ?= 6.2.6
 export VERSION_consul ?= 1.10.3
 export VERSION_mqtt_broker ?= 2.0.12
-export VERSION_device_onvif_camera ?= 0.0.0
 export VERSION_deploy_data ?= 0.1.0
 export VERSION_edge_video_analytics ?= 0.7.0
 export VERSION_model_data ?= 0.1.0
+export VERSION_device_onvif_camera ?= 0.0.1
+# because device-onvif camera is in nexus registry, it gets incremental build numbers
+export VERSION_SUFFIX_device_onvif_camera ?= -dev.4
 
 #### EdgeX Core/Stock Service Versions ####
 # Format: VERSION_<service_name>, where service_name is the base name of the service

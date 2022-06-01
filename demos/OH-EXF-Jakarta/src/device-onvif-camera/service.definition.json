@@ -36,7 +36,7 @@
         { "name": "DRIVER_CREDENTIALSRETRYTIME", "type": "int", "defaultValue": "120" },
         { "name": "DRIVER_CREDENTIALSRETRYWAIT", "type": "int", "defaultValue": "1" },
         { "name": "DRIVER_REQUESTTIMEOUT", "type": "int", "defaultValue": "5" },
-        { "name": "DRIVER_DISCOVERYETHERNETINTERFACE", "type": "string", "defaultValue": "eno1" },
+        { "name": "DRIVER_DISCOVERYETHERNETINTERFACE", "type": "string", "defaultValue": "" },
         { "name": "DRIVER_DEFAULTAUTHMODE", "type": "string", "defaultValue": "usernametoken" },
         { "name": "DRIVER_DEFAULTSECRETPATH", "type": "string", "defaultValue": "credentials001" },
         { "name": "DRIVER_BASENOTIFICATIONURL", "type": "string", "defaultValue": "http://localhost:59984" },

@@ -11,6 +11,10 @@ export DOCKER_REGISTRY ?=
 export EDGEX_DOCKER_REGISTRY ?= $(DOCKER_REGISTRY)
 export DOCKER_EDGEX_ORG ?= edgexfoundry
 
+# Base docker registry to use for edgexfoundry nexus images (Beta/Nightly)
+export EDGEX_NEXUS_REGISTRY ?= nexus3.edgexfoundry.org:10004
+export DOCKER_EDGEX_NEXUS_ORG ?=
+
 # git url to clone for the device-onvif-camera source code
 export REPO_URL_device_onvif_camera ?= https://github.com/edgexfoundry-holding/device-onvif-camera.git
 # branch or tag name for device-onvif-camera
