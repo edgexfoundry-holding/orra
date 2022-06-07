@@ -1,0 +1,69 @@
+{
+    "org": "${HZN_ORG_ID}",
+    "label": "${SERVICE_URL}-${ARCH}",
+    "url": "${SERVICE_URL}",
+    "version": "${SERVICE_VERSION}",
+    "arch": "${ARCH}",
+    "public": false,
+    "sharable": "singleton",
+    "requiredServices": [
+        {
+            "org": "${HZN_ORG_ID}",
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.mqtt-broker",
+            "version": "${VERSION_mqtt_broker}",
+            "arch": "${ARCH}"
+        },
+        {
+            "org": "${HZN_ORG_ID}",
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-metadata",
+            "version": "${VERSION_core_metadata}",
+            "arch": "${ARCH}"
+        },
+        {
+            "org": "${HZN_ORG_ID}",
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.consul",
+            "version": "${VERSION_consul}",
+            "arch": "${ARCH}"
+        },
+        {
+            "org": "${HZN_ORG_ID}",
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.redis",
+            "version": "${VERSION_redis}",
+            "arch": "${ARCH}"
+        }
+    ],
+    "userInput": [
+        { "name": "CLIENTS_CORE_METADATA_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-metadata" },
+        { "name": "EDGEX_SECURITY_SECRET_STORE", "type": "boolean", "defaultValue": "false" },
+        { "name": "MESSAGEQUEUE_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.redis" },
+        { "name": "MQTTBROKERINFO_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.mqtt-broker" },
+        { "name": "REGISTRY_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.consul" },
+        { "name": "SERVICE_HOST", "type": "string", "defaultValue": "${SERVICE_URL}" },
+        { "name": "SERVICE_SERVERBINDADDR", "type": "string", "defaultValue": "0.0.0.0" },
+        { "name": "DATABASES_PRIMARY_HOST", "type": "string",  "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.redis" },
+        { "name": "DEVICE_DEVICESDIR", "type": "string",  "defaultValue": "/camera-device-mqtt/devices" },
+        { "name": "DEVICE_PROFILESDIR", "type": "string",  "defaultValue": "/camera-device-mqtt/profiles" },
+        { "name": "MQTTBROKERINFO_INCOMINGTOPIC", "type": "string",  "defaultValue": "incoming/data/#" },
+        { "name": "MQTTBROKERINFO_RESPONSETOPIC", "type": "string",  "defaultValue": "command/response/#" },
+        { "name": "MQTTBROKERINFO_USETOPICLEVELS", "type": "boolean",  "defaultValue": "true" },
+        { "name": "WAIT_FOR_HOSTS_PREFIX", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}." },
+        { "name": "WAIT_FOR_HOSTS", "type": "string", "defaultValue": "mqtt-broker:1883 consul:8500 core-metadata:59881" }
+    ],
+    "deployment": {
+        "services": {
+            "${SERVICE_URL}": {
+                "image": "${DOCKER_FULL_IMAGE_NAME}",
+                "entrypoint": ["/wait.sh", "${ENTRYPOINT}"],
+                "command": ["-cp=consul.http://${EDGE_OWNER}.${EDGE_DEPLOY}.consul:8500", "--registry"],
+                "binds": [
+                    "${APP_BIND_HORIZON_DIR}/scripts/wait.sh:/wait.sh:ro",
+                    "${APP_BIND_HORIZON_DIR}/device-mqtt/camera-device-mqtt:/camera-device-mqtt:ro"
+                ],
+                "ports": [{
+                    "HostIP": "127.0.0.1",
+                    "HostPort": "59982:59982/tcp"
+                }]
+            }
+        }
+    }
+}

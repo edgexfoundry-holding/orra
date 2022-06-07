@@ -1,0 +1,63 @@
+{
+    "org": "${HZN_ORG_ID}",
+    "label": "${SERVICE_URL}-${ARCH}",
+    "url": "${SERVICE_URL}",
+    "version": "${SERVICE_VERSION}",
+    "arch": "${ARCH}",
+    "public": false,
+    "sharable": "singleton",
+    "requiredServices": [
+        {
+            "org": "${HZN_ORG_ID}",
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.consul",
+            "version": "${VERSION_consul}",
+            "arch": "${ARCH}"
+        },
+        {
+            "org": "${HZN_ORG_ID}",
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-metadata",
+            "version": "${VERSION_core_metadata}",
+            "arch": "${ARCH}"
+        },
+        {
+            "org": "${HZN_ORG_ID}",
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.device-mqtt",
+            "version": "${VERSION_device_mqtt}",
+            "arch": "${ARCH}"
+        },
+        {
+            "org": "${HZN_ORG_ID}",
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.device-onvif-camera",
+            "version": "${VERSION_device_onvif_camera}",
+            "arch": "${ARCH}"
+        }
+    ],
+    "userInput": [
+        { "name": "CLIENTS_CORE_METADATA_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-metadata" },
+        { "name": "EDGEX_SECURITY_SECRET_STORE", "type": "boolean", "defaultValue": "false" },
+        { "name": "REGISTRY_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.consul" },
+        { "name": "SERVICE_HOST", "type": "string", "defaultValue": "${SERVICE_URL}" },
+        { "name": "SERVICE_SERVERBINDADDR", "type": "string", "defaultValue": "0.0.0.0" },
+        { "name": "WAIT_FOR_HOSTS_PREFIX", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}." },
+        // Note: we don't need/want to wait for the device services, they are resolved when called
+        { "name": "WAIT_FOR_HOSTS", "type": "string", "defaultValue": "consul:8500 core-metadata:59881" }
+    ],
+    "deployment": {
+        "services": {
+            "${SERVICE_URL}": {
+                "image": "${DOCKER_FULL_IMAGE_NAME}",
+                "entrypoint": ["/wait.sh", "${ENTRYPOINT}"],
+                "command": ["-cp=consul.http://${EDGE_OWNER}.${EDGE_DEPLOY}.consul:8500", "--registry", "--confdir=/res"],
+                "binds": [
+                    "${APP_BIND_HORIZON_DIR}/scripts/wait.sh:/wait.sh:ro"
+                ],
+                "ports": [
+                    {
+                        "HostIP": "127.0.0.1",
+                        "HostPort": "59882:59882/tcp"
+                    }
+                ]
+            }
+        }
+    }
+}

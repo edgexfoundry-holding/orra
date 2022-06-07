@@ -1,0 +1,63 @@
+{
+    "org": "${HZN_ORG_ID}",
+    "label": "${SERVICE_URL}-${ARCH}",
+    "url": "${SERVICE_URL}",
+    "version": "${SERVICE_VERSION}",
+    "arch": "${ARCH}",
+    "public": false,
+    "sharable": "singleton",
+    "requiredServices": [
+        {
+            "org": "${HZN_ORG_ID}",
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.consul",
+            "version": "${VERSION_consul}",
+            "arch": "${ARCH}"
+        },
+        {
+            "org": "${HZN_ORG_ID}",
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-metadata",
+            "version": "${VERSION_core_metadata}",
+            "arch": "${ARCH}"
+        },
+        {
+            "org": "${HZN_ORG_ID}",
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.redis",
+            "version": "${VERSION_redis}",
+            "arch": "${ARCH}"
+        }
+    ],
+    "userInput": [
+        { "name": "CLIENTS_CORE_METADATA_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-metadata" },
+        { "name": "EDGEX_SECURITY_SECRET_STORE", "type": "boolean", "defaultValue": "false" },
+        { "name": "MESSAGEQUEUE_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.redis" },
+        { "name": "REGISTRY_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.consul" },
+        { "name": "SERVICE_HOST", "type": "string", "defaultValue": "${SERVICE_URL}" },
+        { "name": "SERVICE_SERVERBINDADDR", "type": "string", "defaultValue": "0.0.0.0" },
+        { "name": "APPCUSTOM_CREDENTIALSRETRYTIME", "type": "int", "defaultValue": "120" },
+        { "name": "APPCUSTOM_CREDENTIALSRETRYWAIT", "type": "int", "defaultValue": "1" },
+        { "name": "APPCUSTOM_REQUESTTIMEOUT", "type": "int", "defaultValue": "5" },
+        { "name": "APPCUSTOM_DISCOVERYETHERNETINTERFACE", "type": "string", "defaultValue": "eth0" },
+        { "name": "APPCUSTOM_DISCOVERYSUBNETS", "type": "string", "defaultValue": "192.168.1.0/24" },
+        { "name": "APPCUSTOM_DEFAULTAUTHMODE", "type": "string", "defaultValue": "usernametoken" },
+        { "name": "APPCUSTOM_DEFAULTSECRETPATH", "type": "string", "defaultValue": "credentials001" },
+        { "name": "APPCUSTOM_BASENOTIFICATIONURL", "type": "string", "defaultValue": "http://localhost:59984" },
+        { "name": "WAIT_FOR_HOSTS_PREFIX", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}." },
+        { "name": "WAIT_FOR_HOSTS", "type": "string", "defaultValue": "consul:8500 core-metadata:59881" }
+    ],
+    "deployment": {
+        "services": {
+            "${SERVICE_URL}": {
+                "image": "${DOCKER_FULL_IMAGE_NAME}",
+                "entrypoint": ["/wait.sh", "${ENTRYPOINT}"],
+                "command": ["-cp=consul.http://${EDGE_OWNER}.${EDGE_DEPLOY}.consul:8500", "--registry", "--confdir=/res"],
+                "binds": [
+                    "${APP_BIND_HORIZON_DIR}/scripts/wait.sh:/wait.sh:ro"
+                ],
+                "ports": [{
+                    "HostIP": "127.0.0.1",
+                    "HostPort": "59984:59984/tcp"
+                }]
+            }
+        }
+    }
+}

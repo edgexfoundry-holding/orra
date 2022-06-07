@@ -1,0 +1,10 @@
+# drawio temp files
+*.bkp
+*.dtmp
+
+src/device-onvif-camera/src
+src/model-data/src
+src/model-data/models
+
+build/
+env.mk

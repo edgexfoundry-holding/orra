@@ -1,0 +1,25 @@
+{
+    "org": "${HZN_ORG_ID}",
+    "label": "${SERVICE_URL}-${ARCH}",
+    "url": "${SERVICE_URL}",
+    "version": "${SERVICE_VERSION}",
+    "arch": "${ARCH}",
+    "public": false,
+    "sharable": "singleton",
+    "requiredServices": [
+    ],
+    "userInput": [
+    ],
+    "deployment": {
+        "services": {
+            "${SERVICE_URL}": {
+                "image": "${DOCKER_FULL_IMAGE_NAME}",
+                "command": ["/usr/sbin/mosquitto", "-c", "/mosquitto-no-auth.conf"],
+                "ports": [{
+                    "HostIP": "0.0.0.0",
+                    "HostPort": "1883:1883/tcp"
+                }]
+            }
+        }
+    }
+}

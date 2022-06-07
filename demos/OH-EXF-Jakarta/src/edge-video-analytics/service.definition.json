@@ -1,0 +1,51 @@
+{
+    "org": "${HZN_ORG_ID}",
+    "label": "${SERVICE_URL}-${ARCH}",
+    "url": "${SERVICE_URL}",
+    "version": "${SERVICE_VERSION}",
+    "arch": "${ARCH}",
+    "public": false,
+    "sharable": "singleton",
+    "requiredServices": [
+        {
+            "org": "${HZN_ORG_ID}",
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.mqtt-broker",
+            "version": "${VERSION_mqtt_broker}",
+            "arch": "${ARCH}"
+        },
+        {
+            "org": "${HZN_ORG_ID}",
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.model-data",
+            "version": "${VERSION_model_data}",
+            "arch": "${ARCH}"
+        }
+    ],
+    "userInput": [
+        { "name": "ENABLE_RTSP", "type": "boolean",  "defaultValue": "true" },
+        { "name": "RTSP_PORT", "type": "string",  "defaultValue": "8554" },
+        { "name": "RUN_MODE", "type": "string",  "defaultValue": "EVA" }
+    ],
+    "deployment": {
+        "services": {
+            "${SERVICE_URL}": {
+                "image": "${DOCKER_FULL_IMAGE_NAME}",
+                "entrypoint": ["${ENTRYPOINT}"],
+                "privileged": true,
+                "binds": [
+                    "${APP_BIND_HORIZON_DIR}/edge-video-analytics/pipelines:/app/pipelines:ro",
+                    "${APP_BIND_HORIZON_DIR}/edge-video-analytics/models:/app/models:ro"
+                ],
+                "ports": [
+                    {
+                        "HostIP": "0.0.0.0",
+                        "HostPort": "8080:8080/tcp"
+                    },
+                    {
+                        "HostIP": "0.0.0.0",
+                        "HostPort": "8554:8554/tcp"
+                    }
+                ]
+            }
+        }
+    }
+}

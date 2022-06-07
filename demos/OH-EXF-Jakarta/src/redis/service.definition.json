@@ -1,0 +1,33 @@
+{
+    "org": "${HZN_ORG_ID}",
+    "label": "${SERVICE_URL}-${ARCH}",
+    "url": "${SERVICE_URL}",
+    "version": "${SERVICE_VERSION}",
+    "arch": "${ARCH}",
+    "public": false,
+    "sharable": "singleton",
+    "requiredServices": [
+        {
+            "org": "${HZN_ORG_ID}",
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.deploy-data",
+            "version": "${VERSION_deploy_data}",
+            "arch": "${ARCH}"
+        }
+    ],
+    "userInput": [
+    ],
+    "deployment": {
+        "services": {
+            "${SERVICE_URL}": {
+                "image": "${DOCKER_FULL_IMAGE_NAME}",
+                "binds": [
+                    "${APP_BIND_HORIZON_DIR}/db-data:/data:z"
+                ],
+                "ports": [{
+                    "HostIP": "127.0.0.1",
+                    "HostPort": "6379:6379/tcp"
+                }]
+            }
+        }
+    }
+}

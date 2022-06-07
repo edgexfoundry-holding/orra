@@ -1,0 +1,37 @@
+{
+    "org": "${HZN_ORG_ID}",
+    "label": "${SERVICE_URL}-${ARCH}",
+    "url": "${SERVICE_URL}",
+    "version": "${SERVICE_VERSION}",
+    "arch": "${ARCH}",
+    "public": false,
+    "sharable": "singleton",
+    "requiredServices": [
+        {
+            "org": "${HZN_ORG_ID}",
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.deploy-data",
+            "version": "${VERSION_deploy_data}",
+            "arch": "${ARCH}"
+        }
+    ],
+    "userInput": [
+    ],
+    "deployment": {
+        "services": {
+            "${SERVICE_URL}": {
+                "image": "${DOCKER_FULL_IMAGE_NAME}",
+                "command": ["agent", "-ui", "-bootstrap", "-server", "-client=0.0.0.0", "-bind=127.0.0.1"],
+                "binds": [
+                    "${APP_BIND_HORIZON_DIR}/consul-config:/consul/config:rw",
+                    "${APP_BIND_HORIZON_DIR}/consul-data:/consul/data:rw"
+                ],
+                "ports": [
+                    {
+                        "HostIP": "0.0.0.0",
+                        "HostPort": "8500:8500/tcp"
+                    }
+                ]
+            }
+        }
+    }
+}

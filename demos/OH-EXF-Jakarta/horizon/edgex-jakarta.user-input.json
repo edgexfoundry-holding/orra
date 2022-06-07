@@ -1,0 +1,74 @@
+{
+    "services": [
+        {
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.deploy-data",
+            "org": "${HZN_ORG_ID}",
+            "versionRange": "[0.0.0,INFINITY)",
+            "variables": {
+            }
+        },
+        {
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.consul",
+            "org": "${HZN_ORG_ID}",
+            "versionRange": "[0.0.0,INFINITY)",
+            "variables": {
+            }
+        },
+        {
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.redis",
+            "org": "${HZN_ORG_ID}",
+            "versionRange": "[0.0.0,INFINITY)",
+            "variables": {
+            }
+        },
+        {
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.mqtt-broker",
+            "org": "${HZN_ORG_ID}",
+            "versionRange": "[0.0.0,INFINITY)",
+            "variables": {
+            }
+        },
+        {
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-metadata",
+            "org": "${HZN_ORG_ID}",
+            "versionRange": "[0.0.0,INFINITY)",
+            "variables": {
+            }
+        },
+        {
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-command",
+            "org": "${HZN_ORG_ID}",
+            "versionRange": "[0.0.0,INFINITY)",
+            "variables": {
+            }
+        },
+        {
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.device-mqtt",
+            "org": "${HZN_ORG_ID}",
+            "versionRange": "[0.0.0,INFINITY)",
+            "variables": {
+            }
+        },
+        {
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.asc-mqtt",
+            "org": "${HZN_ORG_ID}",
+            "versionRange": "[0.0.0,INFINITY)",
+            "variables": {
+            }
+        },
+        {
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.device-onvif-camera",
+            "org": "${HZN_ORG_ID}",
+            "versionRange": "[0.0.0,INFINITY)",
+            "variables": {
+            }
+        },
+        {
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.edgex-ui",
+            "org": "${HZN_ORG_ID}",
+            "versionRange": "[0.0.0,INFINITY)",
+            "variables": {
+            }
+        }
+    ]
+}
