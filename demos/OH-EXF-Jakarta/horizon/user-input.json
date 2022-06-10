@@ -1,6 +1,21 @@
 {
     "services": [
         {
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.device-onvif-camera",
+            "org": "${HZN_ORG_ID}",
+            "versionRange": "[0.0.0,INFINITY)",
+            "variables": {
+                "APPCUSTOM_CREDENTIALSRETRYTIME": "120",
+                "APPCUSTOM_CREDENTIALSRETRYWAIT": "1",
+                "APPCUSTOM_REQUESTTIMEOUT": "5",
+                "APPCUSTOM_DISCOVERYETHERNETINTERFACE": "eth0",
+                "APPCUSTOM_DISCOVERYSUBNETS": "192.168.1.0/24",
+                "APPCUSTOM_DEFAULTAUTHMODE": "usernametoken",
+                "APPCUSTOM_DEFAULTSECRETPATH": "credentials001",
+                "APPCUSTOM_BASENOTIFICATIONURL": "http://localhost:59984"
+            }
+        },
+        {
             "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.deploy-data",
             "org": "${HZN_ORG_ID}",
             "versionRange": "[0.0.0,INFINITY)",
@@ -57,14 +72,14 @@
             }
         },
         {
-            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.device-onvif-camera",
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.edgex-ui",
             "org": "${HZN_ORG_ID}",
             "versionRange": "[0.0.0,INFINITY)",
             "variables": {
             }
         },
         {
-            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.edgex-ui",
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.edge-video-analytics",
             "org": "${HZN_ORG_ID}",
             "versionRange": "[0.0.0,INFINITY)",
             "variables": {

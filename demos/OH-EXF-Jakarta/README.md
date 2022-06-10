@@ -40,13 +40,24 @@ make all
 ```
 
 ### Register Node
+#### User Input
+- Copy the example [horizon/user-input.json](horizon/user-input.json) to the current directory.
+- Modify and/or add any user input values you would like to be specified
+- Make sure to use `USER_INPUT=<path to user-input.json>` when calling `make register`
+
+#### Register
 ```shell
+# Register with default pattern
 make register
-# OR
-make register p=<pattern-name>
+
+# Register with default pattern and custom user input file
+make register USER_INPUT=<path to user-input.json>
+
+# Register with custom pattern and custom user input file
+make register p=<pattern-name> USER_INPUT=<path to user-input.json>
 ```
 
-Unregister:
+#### Unregister
 ```shell
 make unregister force-clean
 ```

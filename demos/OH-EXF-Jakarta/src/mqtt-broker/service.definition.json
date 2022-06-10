@@ -7,6 +7,12 @@
     "public": false,
     "sharable": "singleton",
     "requiredServices": [
+        {
+            "org": "${HZN_ORG_ID}",
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.deploy-data",
+            "version": "${VERSION_deploy_data}",
+            "arch": "${ARCH}"
+        }
     ],
     "userInput": [
     ],
@@ -14,11 +20,24 @@
         "services": {
             "${SERVICE_URL}": {
                 "image": "${DOCKER_FULL_IMAGE_NAME}",
-                "command": ["/usr/sbin/mosquitto", "-c", "/mosquitto-no-auth.conf"],
-                "ports": [{
-                    "HostIP": "0.0.0.0",
-                    "HostPort": "1883:1883/tcp"
-                }]
+                "binds": [
+                    "${APP_BIND_HORIZON_DIR}/mqtt-broker:/mosquitto/config:z"
+                ],
+                "command": [
+                    "/usr/sbin/mosquitto",
+                    "-c",
+                    "/mosquitto/config/mosquitto.conf"
+                ],
+                "ports": [
+                    {
+                        "HostIP": "0.0.0.0",
+                        "HostPort": "1883:1883/tcp"
+                    },
+                    {
+                        "HostIP": "0.0.0.0",
+                        "HostPort": "9001:9001/tcp"
+                    }
+                ]
             }
         }
     }
