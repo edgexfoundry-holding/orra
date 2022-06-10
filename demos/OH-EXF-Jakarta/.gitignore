@@ -8,3 +8,5 @@ src/model-data/models
 
 build/
 env.mk
+user-input.json
+!horizon/user-input.json

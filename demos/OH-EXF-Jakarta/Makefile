@@ -9,6 +9,7 @@ SUBPROJECTS = deploy-data model-data redis consul mqtt-broker core-metadata devi
 PATTERNS = edgex-jakarta-edge-video-analytics edgex-jakarta edge-video-analytics
 
 NODE_POLICY ?= horizon/node-policy.json
+USER_INPUT ?=
 
 # do not let it be run in parallel to ensure dependency order is preserved
 .NOTPARALLEL:
@@ -68,7 +69,7 @@ force-clean: cleanup
 register:
 	$(call require_arg,p,$(word 1,$(PATTERNS)))
 	hzn register -p "pattern-$(EDGE_OWNER).$(EDGE_DEPLOY).$(p)-$(VERSION_PATTERN_$(subst -,_,$(p)))" \
-		"$(addprefix --policy=,$(NODE_POLICY))" --input-file=
+		"$(addprefix --policy=,$(NODE_POLICY))" "$(addprefix --input-file=,$(USER_INPUT))"
 	sudo mkdir -p "$(APP_BIND_HORIZON_DIR)"
 	sudo chmod 777 "$(APP_BIND_HORIZON_DIR)"
 
