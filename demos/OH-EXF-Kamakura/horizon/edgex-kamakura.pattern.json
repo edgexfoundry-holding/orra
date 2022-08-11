@@ -1,7 +1,7 @@
 {
   "name": "pattern-${EDGE_OWNER}.${EDGE_DEPLOY}.${PATTERN_NAME}-${PATTERN_VERSION}",
-  "label": "EdgeX Jakarta Services",
-  "description": "Pattern for EdgeX Jakarta",
+  "label": "EdgeX Kamakura Services",
+  "description": "Pattern for EdgeX Kamakura",
   "public": false,
   "services": [
     {

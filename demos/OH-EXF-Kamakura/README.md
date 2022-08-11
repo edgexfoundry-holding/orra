@@ -1,5 +1,5 @@
-# EdgeX Foundry Jakarta w/ Onvif Device Service + Edge Video Analytics
-Deployment files for running EdgeX Jakarta with the onvif device service, as well
+# EdgeX Foundry Kamakura w/ Onvif Device Service + Edge Video Analytics
+Deployment files for running EdgeX Kamakura with the onvif device service, as well
 as Intel's Edge Video Analytics on the Open Horizon platform.
 
 ## Environment

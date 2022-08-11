@@ -6,7 +6,7 @@ include make/base.mk
 SUBPROJECTS = deploy-data model-data redis consul mqtt-broker core-metadata device-mqtt \
 			  device-onvif-camera asc-mqtt core-command edgex-ui edge-video-analytics
 
-PATTERNS = edgex-jakarta-edge-video-analytics edgex-jakarta edge-video-analytics
+PATTERNS = edgex-kamakura-edge-video-analytics edgex-kamakura edge-video-analytics
 
 NODE_POLICY ?= horizon/node-policy.json
 USER_INPUT ?=
