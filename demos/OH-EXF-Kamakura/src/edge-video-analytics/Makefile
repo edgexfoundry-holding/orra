@@ -2,7 +2,7 @@
 include ../../make/base.mk
 
 # Define and export service specific variables
-export ENTRYPOINT=/app/run.sh
+export ENTRYPOINT=/home/pipeline-server/run.sh
 export DOCKER_ORG ?= intel
 export IMAGE_NAME ?= edge_video_analytics_microservice
 
