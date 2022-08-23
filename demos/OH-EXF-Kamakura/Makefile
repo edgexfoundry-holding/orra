@@ -4,12 +4,16 @@ include make/base.mk
 # Note: These must be in sorted order based on their dependencies
 # in order for everything to build properly on first build
 SUBPROJECTS = deploy-data model-data redis consul mqtt-broker core-metadata device-mqtt \
-			  device-onvif-camera asc-mqtt core-command edgex-ui edge-video-analytics
+			  device-onvif-camera asc-mqtt core-command edgex-ui edge-video-analytics \
+			  app-camera-management
 
-PATTERNS = edgex-kamakura-edge-video-analytics edgex-kamakura edge-video-analytics
+PATTERNS = edgex-kamakura-edge-video-analytics-management-app \
+		   edgex-kamakura-edge-video-analytics \
+		   edgex-kamakura \
+		   edge-video-analytics
 
 NODE_POLICY ?= horizon/node-policy.json
-USER_INPUT ?=
+USER_INPUT ?= user-input.json
 
 # do not let it be run in parallel to ensure dependency order is preserved
 .NOTPARALLEL:
@@ -25,8 +29,6 @@ BUILD_DIR = build
 file ?=
 p ?= $(word 1,$(PATTERNS))
 n ?= 0.1
-
-INPUT_FILE ?= horizon/$(p).user-input.json
 
 .PHONY: all publish $(SUBPROJECTS:%=publish-%) publish-patterns $(PATTERNS:%=publish-pattern-%) \
 		unregister register watch-agreements envsubst $(PATTERNS:%=print-pattern-%) $(SUBPROJECTS:%=print-%) \

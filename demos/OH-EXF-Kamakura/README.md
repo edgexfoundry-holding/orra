@@ -46,6 +46,15 @@ make all
 - Make sure to use `USER_INPUT=<path to user-input.json>` when calling `make register`
 
 #### Register
+##### Setup
+```shell
+# Copy the example file horizon/user-input.json to current directory
+cp -a horizon/user-input.json .
+
+# Configure user-input.json values
+vi user-input.json
+```
+#### Register (pick one)
 ```shell
 # Register with default pattern
 make register

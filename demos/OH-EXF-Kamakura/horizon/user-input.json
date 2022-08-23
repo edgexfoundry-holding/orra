@@ -5,14 +5,22 @@
             "org": "${HZN_ORG_ID}",
             "versionRange": "[0.0.0,INFINITY)",
             "variables": {
-                "APPCUSTOM_CREDENTIALSRETRYTIME": "120",
-                "APPCUSTOM_CREDENTIALSRETRYWAIT": "1",
-                "APPCUSTOM_REQUESTTIMEOUT": "5",
+                "APPCUSTOM_REQUESTTIMEOUT": 5,
                 "APPCUSTOM_DISCOVERYETHERNETINTERFACE": "eth0",
                 "APPCUSTOM_DISCOVERYSUBNETS": "192.168.1.0/24",
-                "APPCUSTOM_DEFAULTAUTHMODE": "usernametoken",
                 "APPCUSTOM_DEFAULTSECRETPATH": "credentials001",
-                "APPCUSTOM_BASENOTIFICATIONURL": "http://localhost:59984"
+                "APPCUSTOM_BASENOTIFICATIONURL": "http://localhost:59984",
+                "WRITABLE_INSECURESECRETS_CREDENTIALS001_SECRETS_USERNAME": "admin",
+                "WRITABLE_INSECURESECRETS_CREDENTIALS001_SECRETS_PASSWORD": "admin"
+            }
+        },
+        {
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.app-camera-management",
+            "org": "${HZN_ORG_ID}",
+            "versionRange": "[0.0.0,INFINITY)",
+            "variables": {
+                "WRITABLE_INSECURESECRETS_CAMERACREDENTIALS_SECRETS_USERNAME": "admin",
+                "WRITABLE_INSECURESECRETS_CAMERACREDENTIALS_SECRETS_PASSWORD": "admin"
             }
         },
         {

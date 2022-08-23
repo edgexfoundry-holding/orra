@@ -22,5 +22,10 @@ export TAG_model_downloader ?= v0.7.0
 # full image name and version of openvino data image to use when downloading and converting models
 export OPENVINO_DATA_IMAGE ?= openvino/ubuntu20_data_dev:2021.4.2
 
+# git url to clone for the edgex-examples source code
+export REPO_URL_edgex_examples ?= https://github.com/EdgeX-Camera-Management/edgex-examples.git
+# branch or tag name for edgex-examples
+export TAG_edgex_examples ?= main
+
 # root volume mount point for services
 export APP_BIND_HORIZON_DIR ?= /var/local/horizon

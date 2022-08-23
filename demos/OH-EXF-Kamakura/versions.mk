@@ -7,6 +7,7 @@ export VERSION_mqtt_broker ?= 2.0.12
 export VERSION_deploy_data ?= 2.2.0
 export VERSION_edge_video_analytics ?= 0.7.2
 export VERSION_model_data ?= 2.2.0
+export VERSION_app_camera_management ?= 0.0.0
 export VERSION_device_onvif_camera ?= 2.2.0
 # if using device-onvif-camera from the nexus registry, use the incremental build numbers (-dev.9 etc.)
 export VERSION_SUFFIX_device_onvif_camera ?=
@@ -27,3 +28,4 @@ export VERSION_edgex_ui ?= $(EDGEX_CORE_VERSION)
 export VERSION_PATTERN_edgex_kamakura ?= 2.2.0
 export VERSION_PATTERN_edgex_kamakura_edge_video_analytics ?= 2.2.0
 export VERSION_PATTERN_edge_video_analytics ?= 2.2.0
+export VERSION_PATTERN_edgex_kamakura_edge_video_analytics_management_app ?= 2.2.0
