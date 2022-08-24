@@ -15,16 +15,6 @@
       ]
     },
     {
-      "serviceUrl": "${EDGE_OWNER}.${EDGE_DEPLOY}.edge-video-analytics",
-      "serviceOrgid": "${HZN_ORG_ID}",
-      "serviceArch": "${ARCH}",
-      "serviceVersions": [
-        {
-          "version": "${VERSION_edge_video_analytics}"
-        }
-      ]
-    },
-    {
       "serviceUrl": "${EDGE_OWNER}.${EDGE_DEPLOY}.edgex-ui",
       "serviceOrgid": "${HZN_ORG_ID}",
       "serviceArch": "${ARCH}",

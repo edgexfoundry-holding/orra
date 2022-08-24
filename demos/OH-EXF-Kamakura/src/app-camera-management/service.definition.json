@@ -45,13 +45,13 @@
         { "name": "REGISTRY_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.consul" },
         { "name": "SERVICE_HOST", "type": "string", "defaultValue": "${SERVICE_URL}" },
         { "name": "SERVICE_SERVERBINDADDR", "type": "string", "defaultValue": "0.0.0.0" },
-        { "name": "APPCUSTOM_EVAMBASEURL", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.edge-video-analytics:8080" },
+        { "name": "APPCUSTOM_EVAMBASEURL", "type": "string", "defaultValue": "http://${EDGE_OWNER}.${EDGE_DEPLOY}.edge-video-analytics:8080" },
         { "name": "APPCUSTOM_MQTTADDRESS", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.mqtt-broker:1883" },
         { "name": "APPCUSTOM_MQTTTOPIC", "type": "string", "defaultValue": "incoming/data/edge-video-analytics/inference-event" },
         { "name": "WRITABLE_INSECURESECRETS_CAMERACREDENTIALS_SECRETS_USERNAME", "type": "string", "defaultValue": "admin" },
         { "name": "WRITABLE_INSECURESECRETS_CAMERACREDENTIALS_SECRETS_PASSWORD", "type": "string", "defaultValue": "admin" },
         { "name": "WAIT_FOR_HOSTS_PREFIX", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}." },
-        { "name": "WAIT_FOR_HOSTS", "type": "string", "defaultValue": "consul:8500 core-metadata:59881" }
+        { "name": "WAIT_FOR_HOSTS", "type": "string", "defaultValue": "consul:8500 core-metadata:59881 edge-video-analytics:8080" }
     ],
     "deployment": {
         "services": {
