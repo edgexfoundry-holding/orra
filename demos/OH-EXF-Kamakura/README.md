@@ -72,7 +72,7 @@ make unregister force-clean
 ```
 
 ## Service Dependency Diagram
-![](docs/services-diagram.png)
+![](docs/images/services-diagram.png)
 
 ## Networking limitations and issues
 ### Consul
