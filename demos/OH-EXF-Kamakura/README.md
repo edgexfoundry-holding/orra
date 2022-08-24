@@ -1,5 +1,5 @@
-# EdgeX Foundry Jakarta w/ Onvif Device Service + Edge Video Analytics
-Deployment files for running EdgeX Jakarta with the onvif device service, as well
+# EdgeX Foundry Kamakura w/ Onvif Device Service + Edge Video Analytics
+Deployment files for running EdgeX Kamakura with the onvif device service, as well
 as Intel's Edge Video Analytics on the Open Horizon platform.
 
 ## Environment
@@ -25,10 +25,18 @@ Check [defaults.mk](defaults.mk) for various env vars you can override.
 Optionally you can add a file called `env.mk` and set your overrides in there.
 
 ## Publish
-Right now, because the `device-onvif-camera`, `deploy-data`, and `model-data` docker images are not 
+Right now, because the `app-camera-management`, `deploy-data`, and `model-data` docker images are not 
 in a docker registry, the make scripts will automatically push them to a registry defined via
 `LOCAL_DOCKER_REGISTRY`. If you wish, you can run a local docker registry at `localhost:5000` using the following
 command:
+
+> **WARNING:** This will run using an unauthenticated registry configuration that is only appropriate for testing.
+> A production-ready registry must be protected by TLS and should ideally use an access-control mechanism.
+> View Docker's [configuration guide](https://docs.docker.com/registry/configuration/) to deploy a production-ready registry.
+
+> **Note:** This only applies if you do not already have a docker registry or account you would like
+> to publish the images to. `LOCAL_DOCKER_REGISTRY` can be set to any registry, and can be authenticated
+> via `docker login ...`
 
 ```shell
 docker run -d -p 5000:5000 --restart=always --name registry registry:2
@@ -46,6 +54,15 @@ make all
 - Make sure to use `USER_INPUT=<path to user-input.json>` when calling `make register`
 
 #### Register
+##### Setup
+```shell
+# Copy the example file horizon/user-input.json to current directory
+cp -a horizon/user-input.json .
+
+# Configure user-input.json values
+vi user-input.json
+```
+#### Register (pick one)
 ```shell
 # Register with default pattern
 make register
@@ -63,7 +80,7 @@ make unregister force-clean
 ```
 
 ## Service Dependency Diagram
-![](docs/services-diagram.png)
+![](docs/images/services-diagram.png)
 
 ## Networking limitations and issues
 ### Consul

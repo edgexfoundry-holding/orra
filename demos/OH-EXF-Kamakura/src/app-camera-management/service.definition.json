@@ -24,6 +24,18 @@
             "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.redis",
             "version": "${VERSION_redis}",
             "arch": "${ARCH}"
+        },
+        {
+            "org": "${HZN_ORG_ID}",
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.core-command",
+            "version": "${VERSION_core_command}",
+            "arch": "${ARCH}"
+        },
+        {
+            "org": "${HZN_ORG_ID}",
+            "url": "${EDGE_OWNER}.${EDGE_DEPLOY}.edge-video-analytics",
+            "version": "${VERSION_edge_video_analytics}",
+            "arch": "${ARCH}"
         }
     ],
     "userInput": [
@@ -33,16 +45,13 @@
         { "name": "REGISTRY_HOST", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.consul" },
         { "name": "SERVICE_HOST", "type": "string", "defaultValue": "${SERVICE_URL}" },
         { "name": "SERVICE_SERVERBINDADDR", "type": "string", "defaultValue": "0.0.0.0" },
-        { "name": "APPCUSTOM_CREDENTIALSRETRYTIME", "type": "int", "defaultValue": "120" },
-        { "name": "APPCUSTOM_CREDENTIALSRETRYWAIT", "type": "int", "defaultValue": "1" },
-        { "name": "APPCUSTOM_REQUESTTIMEOUT", "type": "int", "defaultValue": "5" },
-        { "name": "APPCUSTOM_DISCOVERYETHERNETINTERFACE", "type": "string", "defaultValue": "eth0" },
-        { "name": "APPCUSTOM_DISCOVERYSUBNETS", "type": "string", "defaultValue": "192.168.1.0/24" },
-        { "name": "APPCUSTOM_DEFAULTAUTHMODE", "type": "string", "defaultValue": "usernametoken" },
-        { "name": "APPCUSTOM_DEFAULTSECRETPATH", "type": "string", "defaultValue": "credentials001" },
-        { "name": "APPCUSTOM_BASENOTIFICATIONURL", "type": "string", "defaultValue": "http://localhost:59984" },
+        { "name": "APPCUSTOM_EVAMBASEURL", "type": "string", "defaultValue": "http://${EDGE_OWNER}.${EDGE_DEPLOY}.edge-video-analytics:8080" },
+        { "name": "APPCUSTOM_MQTTADDRESS", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}.mqtt-broker:1883" },
+        { "name": "APPCUSTOM_MQTTTOPIC", "type": "string", "defaultValue": "incoming/data/edge-video-analytics/inference-event" },
+        { "name": "WRITABLE_INSECURESECRETS_CAMERACREDENTIALS_SECRETS_USERNAME", "type": "string", "defaultValue": "admin" },
+        { "name": "WRITABLE_INSECURESECRETS_CAMERACREDENTIALS_SECRETS_PASSWORD", "type": "string", "defaultValue": "admin" },
         { "name": "WAIT_FOR_HOSTS_PREFIX", "type": "string", "defaultValue": "${EDGE_OWNER}.${EDGE_DEPLOY}." },
-        { "name": "WAIT_FOR_HOSTS", "type": "string", "defaultValue": "consul:8500 core-metadata:59881" }
+        { "name": "WAIT_FOR_HOSTS", "type": "string", "defaultValue": "consul:8500 core-metadata:59881 edge-video-analytics:8080" }
     ],
     "deployment": {
         "services": {
@@ -55,7 +64,7 @@
                 ],
                 "ports": [{
                     "HostIP": "127.0.0.1",
-                    "HostPort": "59984:59984/tcp"
+                    "HostPort": "59750:59750/tcp"
                 }]
             }
         }

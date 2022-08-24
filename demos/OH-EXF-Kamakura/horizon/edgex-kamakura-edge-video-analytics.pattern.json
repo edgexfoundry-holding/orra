@@ -1,0 +1,38 @@
+{
+  "name": "pattern-${EDGE_OWNER}.${EDGE_DEPLOY}.${PATTERN_NAME}-${PATTERN_VERSION}",
+  "label": "EdgeX Kamakura Edge Video Analytics Services",
+  "description": "Pattern for EdgeX Kamakura with Edge Video Analytics",
+  "public": false,
+  "services": [
+    {
+      "serviceUrl": "${EDGE_OWNER}.${EDGE_DEPLOY}.asc-mqtt",
+      "serviceOrgid": "${HZN_ORG_ID}",
+      "serviceArch": "${ARCH}",
+      "serviceVersions": [
+        {
+          "version": "${VERSION_asc_mqtt}"
+        }
+      ]
+    },
+    {
+      "serviceUrl": "${EDGE_OWNER}.${EDGE_DEPLOY}.edge-video-analytics",
+      "serviceOrgid": "${HZN_ORG_ID}",
+      "serviceArch": "${ARCH}",
+      "serviceVersions": [
+        {
+          "version": "${VERSION_edge_video_analytics}"
+        }
+      ]
+    },
+    {
+      "serviceUrl": "${EDGE_OWNER}.${EDGE_DEPLOY}.edgex-ui",
+      "serviceOrgid": "${HZN_ORG_ID}",
+      "serviceArch": "${ARCH}",
+      "serviceVersions": [
+        {
+          "version": "${VERSION_edgex_ui}"
+        }
+      ]
+    }
+  ]
+}

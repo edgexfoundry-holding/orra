@@ -23,7 +23,11 @@
     "userInput": [
         { "name": "ENABLE_RTSP", "type": "boolean",  "defaultValue": "true" },
         { "name": "RTSP_PORT", "type": "string",  "defaultValue": "8554" },
-        { "name": "RUN_MODE", "type": "string",  "defaultValue": "EVA" }
+        { "name": "RUN_MODE", "type": "string",  "defaultValue": "EVA" },
+        { "name": "DETECTION_DEVICE", "type": "string", "defaultValue":  "CPU" },
+        { "name": "CLASSIFICATION_DEVICE", "type": "string", "defaultValue":  "CPU" },
+        { "name": "ENABLE_WEBRTC", "type": "boolean", "defaultValue":  "false" },
+        { "name": "WEBRTC_SIGNALING_SERVER", "type": "string", "defaultValue":  "ws://localhost:8443" }
     ],
     "deployment": {
         "services": {
@@ -32,8 +36,9 @@
                 "entrypoint": ["${ENTRYPOINT}"],
                 "privileged": true,
                 "binds": [
-                    "${APP_BIND_HORIZON_DIR}/edge-video-analytics/pipelines:/app/pipelines:ro",
-                    "${APP_BIND_HORIZON_DIR}/edge-video-analytics/models:/app/models:ro"
+                    "${APP_BIND_HORIZON_DIR}/edge-video-analytics/pipelines:/home/pipeline-server/pipelines:ro",
+                    "${APP_BIND_HORIZON_DIR}/edge-video-analytics/models:/home/pipeline-server/models:ro",
+                    "${APP_BIND_HORIZON_DIR}/edge-video-analytics/config.json:/home/pipeline-server/config.json:ro"
                 ],
                 "ports": [
                     {

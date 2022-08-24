@@ -1,7 +1,7 @@
 {
   "name": "pattern-${EDGE_OWNER}.${EDGE_DEPLOY}.${PATTERN_NAME}-${PATTERN_VERSION}",
-  "label": "EdgeX Jakarta Edge Video Analytics Services",
-  "description": "Pattern for EdgeX Jakarta with Edge Video Analytics",
+  "label": "EdgeX Kamakura Services",
+  "description": "Pattern for EdgeX Kamakura",
   "public": false,
   "services": [
     {
@@ -11,16 +11,6 @@
       "serviceVersions": [
         {
           "version": "${VERSION_asc_mqtt}"
-        }
-      ]
-    },
-    {
-      "serviceUrl": "${EDGE_OWNER}.${EDGE_DEPLOY}.edge-video-analytics",
-      "serviceOrgid": "${HZN_ORG_ID}",
-      "serviceArch": "${ARCH}",
-      "serviceVersions": [
-        {
-          "version": "${VERSION_edge_video_analytics}"
         }
       ]
     },
