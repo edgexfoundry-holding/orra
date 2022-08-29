@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Copyright (C) 2022 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
 echo " wait: $*"
 echo "hosts: ${WAIT_FOR_HOSTS:-}"
 echo "  dir: ${WAIT_FOR_FILES_DIR:-}"

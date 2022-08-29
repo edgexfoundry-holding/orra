@@ -1,3 +1,6 @@
+# Copyright (C) 2022 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
 # Sets the scope so that multiple users can use the same instance
 $(call check_env,EDGE_OWNER,<sg.edge>)
 # Lets you manage and deploy different group of code across dev, demo, test, prod or project

@@ -1,3 +1,6 @@
+# Copyright (C) 2022 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
 # This makefile contains the base configuration settings all Makefiles will share
 # To utilize it, add the following to the top of your Makefile (substitute actual path):
 # 	include ../make/base.mk

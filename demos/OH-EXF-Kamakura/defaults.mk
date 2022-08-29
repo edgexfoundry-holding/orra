@@ -1,3 +1,6 @@
+# Copyright (C) 2022 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
 # Docker registry for locally built images
 # this can be overridden to use your own registry
 export LOCAL_DOCKER_REGISTRY ?= localhost:5000

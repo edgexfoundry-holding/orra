@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# Copyright (C) 2022 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
+
 DATA_DIR="${DATA_DIR:-/data}"
 DEST_DIR="${DEST_DIR:-/out}"
 
