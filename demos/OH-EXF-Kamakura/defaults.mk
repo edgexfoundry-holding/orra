@@ -26,7 +26,7 @@ export TAG_model_downloader ?= v0.7.0
 export OPENVINO_DATA_IMAGE ?= openvino/ubuntu20_data_dev:2021.4.2
 
 # git url to clone for the edgex-examples source code
-export REPO_URL_edgex_examples ?= https://github.com/EdgeX-Camera-Management/edgex-examples.git
+export REPO_URL_edgex_examples ?= https://github.com/edgexfoundry/edgex-examples.git
 # branch or tag name for edgex-examples
 export TAG_edgex_examples ?= main
 
