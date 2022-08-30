@@ -1,3 +1,6 @@
+# Copyright (C) 2022 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
 # Docker registry for locally built images
 # this can be overridden to use your own registry
 export LOCAL_DOCKER_REGISTRY ?= localhost:5000
@@ -23,7 +26,7 @@ export TAG_model_downloader ?= v0.7.0
 export OPENVINO_DATA_IMAGE ?= openvino/ubuntu20_data_dev:2021.4.2
 
 # git url to clone for the edgex-examples source code
-export REPO_URL_edgex_examples ?= https://github.com/EdgeX-Camera-Management/edgex-examples.git
+export REPO_URL_edgex_examples ?= https://github.com/edgexfoundry/edgex-examples.git
 # branch or tag name for edgex-examples
 export TAG_edgex_examples ?= main
 

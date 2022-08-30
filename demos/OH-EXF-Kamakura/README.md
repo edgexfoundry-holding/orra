@@ -1,4 +1,4 @@
-# EdgeX Foundry Kamakura w/ Onvif Device Service + Edge Video Analytics
+# EdgeX Foundry Kamakura w/ Onvif Device Service + Edge Video Analytics + Camera Management Example App
 Deployment files for running EdgeX Kamakura with the onvif device service, as well
 as Intel's Edge Video Analytics on the Open Horizon platform.
 

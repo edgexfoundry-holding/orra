@@ -1,3 +1,5 @@
+// Copyright (C) 2022 Intel Corporation
+// SPDX-License-Identifier: Apache-2.0
 {
   "name": "pattern-${EDGE_OWNER}.${EDGE_DEPLOY}.${PATTERN_NAME}-${PATTERN_VERSION}",
   "label": "EdgeX Kamakura Services",

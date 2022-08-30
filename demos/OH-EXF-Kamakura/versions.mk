@@ -1,3 +1,6 @@
+# Copyright (C) 2022 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
 #### Service Versions ####
 # Format: VERSION_<service_name>, where service_name is the base name of the service
 # 		  (often the name of the folder), but with `-` converted to `_`.

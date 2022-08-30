@@ -1,3 +1,6 @@
+# Copyright (C) 2022 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
 # Guard to prevent it from being included more than once
 ifndef HELPERS_MK_DEFINED
 HELPERS_MK_DEFINED := 1
