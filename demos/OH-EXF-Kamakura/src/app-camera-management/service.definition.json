@@ -65,7 +65,7 @@
                     "${APP_BIND_HORIZON_DIR}/scripts/wait.sh:/wait.sh:ro"
                 ],
                 "ports": [{
-                    "HostIP": "127.0.0.1",
+                    "HostIP": "0.0.0.0",
                     "HostPort": "59750:59750/tcp"
                 }]
             }
