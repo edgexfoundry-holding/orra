@@ -1,0 +1,25 @@
+{
+    "label": "deploy-policy-edgex-ui-${EDGE_OWNER}.${EDGE_DEPLOY}-${ARCH}",
+    "description": "A policy for edgex-ui ${ARCH}",
+    "service": {
+        "name": "${EDGE_OWNER}.${EDGE_DEPLOY}.edgex-ui",
+        "org": "${HZN_ORG_ID}",
+        "arch": "${ARCH}",
+        "serviceVersions": [
+            {
+                "version": "${VERSION_edgex_ui}",
+                "priority": {}
+            }
+        ]
+    },
+    "properties": [
+    ],
+    "constraints": [
+        "owner == ${EDGE_OWNER}",
+        "deploy == ${EDGE_DEPLOY}",
+        "edgex-ui == true",
+        "openhorizon.arch == ${ARCH}"
+    ],
+    "userInput": [
+    ]
+}

@@ -1,0 +1,25 @@
+{
+    "label": "deploy-policy-asc-mqtt-${EDGE_OWNER}.${EDGE_DEPLOY}-${ARCH}",
+    "description": "A policy for asc-mqtt ${ARCH}",
+    "service": {
+        "name": "${EDGE_OWNER}.${EDGE_DEPLOY}.asc-mqtt",
+        "org": "${HZN_ORG_ID}",
+        "arch": "${ARCH}",
+        "serviceVersions": [
+            {
+                "version": "${VERSION_asc_mqtt}",
+                "priority": {}
+            }
+        ]
+    },
+    "properties": [
+    ],
+    "constraints": [
+        "owner == ${EDGE_OWNER}",
+        "deploy == ${EDGE_DEPLOY}",
+        "asc-mqtt == true",
+        "openhorizon.arch == ${ARCH}"
+    ],
+    "userInput": [
+    ]
+}

@@ -42,7 +42,12 @@ command:
 docker run -d -p 5000:5000 --restart=always --name registry registry:2
 ```
 
-### Publish all services and patterns
+Now, configure the system to use this registry:
+```shell
+export LOCAL_DOCKER_REGISTRY=localhost:5000
+```
+
+### Publish all services, patterns, and deployment policies
 ```shell
 make all
 ```
@@ -51,10 +56,7 @@ make all
 #### User Input
 - Copy the example [horizon/user-input.json](horizon/user-input.json) to the current directory.
 - Modify and/or add any user input values you would like to be specified
-- Make sure to use `USER_INPUT=<path to user-input.json>` when calling `make register`
 
-#### Register
-##### Setup
 ```shell
 # Copy the example file horizon/user-input.json to current directory
 cp -a horizon/user-input.json .
@@ -62,16 +64,20 @@ cp -a horizon/user-input.json .
 # Configure user-input.json values
 vi user-input.json
 ```
+
 #### Register (pick one)
 ```shell
-# Register with default pattern
+# Register with default policy and user-input
 make register
 
-# Register with default pattern and custom user input file
+# Register with default policy and custom user input file
 make register USER_INPUT=<path to user-input.json>
 
+# Register with default pattern and default user input file
+make register-pattern
+
 # Register with custom pattern and custom user input file
-make register p=<pattern-name> USER_INPUT=<path to user-input.json>
+make register-pattern p=<pattern-name> USER_INPUT=<path to user-input.json>
 ```
 
 #### Unregister

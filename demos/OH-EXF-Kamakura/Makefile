@@ -15,6 +15,11 @@ PATTERNS = edgex-kamakura-edge-video-analytics-management-app \
 		   edgex-kamakura \
 		   edge-video-analytics
 
+# list of all deployment policies in the format: deploy-policy-XXX.json
+DEPLOY_POLICIES = app-camera-management \
+				  asc-mqtt \
+				  edgex-ui
+
 NODE_POLICY ?= horizon/node-policy.json
 USER_INPUT ?= user-input.json
 
@@ -35,9 +40,9 @@ n ?= 0.1
 
 .PHONY: all publish $(SUBPROJECTS:%=publish-%) publish-patterns $(PATTERNS:%=publish-pattern-%) \
 		unregister register watch-agreements envsubst $(PATTERNS:%=print-pattern-%) $(SUBPROJECTS:%=print-%) \
-		tail inspect watch-services cleanup force-clean
+		tail inspect watch-services cleanup force-clean deploy-policies register-pattern post-register
 
-all: publish publish-patterns
+all: publish publish-patterns deploy-policies
 
 publish: $(SUBPROJECTS:%=publish-%)
 
@@ -72,14 +77,28 @@ force-clean: cleanup
 	docker network prune -f
 
 register:
+	hzn register "$(addprefix --policy=,$(NODE_POLICY))" "$(addprefix --input-file=,$(USER_INPUT))"
+	$(MAKE) post-register
+
+# register with a specific pattern
+register-pattern:
 	$(call require_arg,p,$(word 1,$(PATTERNS)))
 	hzn register -p "pattern-$(EDGE_OWNER).$(EDGE_DEPLOY).$(p)-$(VERSION_PATTERN_$(subst -,_,$(p)))" \
 		"$(addprefix --policy=,$(NODE_POLICY))" "$(addprefix --input-file=,$(USER_INPUT))"
+	$(MAKE) post-register
+
+post-register:
 	sudo mkdir -p "$(APP_BIND_HORIZON_DIR)"
 	sudo chmod 777 "$(APP_BIND_HORIZON_DIR)"
 
 watch-agreements:
 	watch -n $(n) hzn agreement list
+
+# register all deploy policies with the hzn exchange server
+deploy-policies: $(DEPLOY_POLICIES:%=deploy-policy-%.json)
+
+$(DEPLOY_POLICIES:%=deploy-policy-%.json): deploy-policy-%.json :
+	hzn exchange deployment addpolicy --json-file=horizon/$@ deploy-policy-$*-${EDGE_OWNER}.${EDGE_DEPLOY}-${ARCH}
 
 $(BUILD_DIR):
 	mkdir -p "$@"
