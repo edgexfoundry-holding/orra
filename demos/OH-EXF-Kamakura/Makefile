@@ -15,11 +15,6 @@ PATTERNS = edgex-kamakura-edge-video-analytics-management-app \
 		   edgex-kamakura \
 		   edge-video-analytics
 
-# list of all deployment policies in the format: deploy-policy-XXX.json
-DEPLOY_POLICIES = app-camera-management \
-				  asc-mqtt \
-				  edgex-ui
-
 NODE_POLICY ?= horizon/node-policy.json
 USER_INPUT ?= user-input.json
 
@@ -40,16 +35,16 @@ n ?= 0.1
 
 .PHONY: all publish $(SUBPROJECTS:%=publish-%) publish-patterns $(PATTERNS:%=publish-pattern-%) \
 		unregister register watch-agreements envsubst $(PATTERNS:%=print-pattern-%) $(SUBPROJECTS:%=print-%) \
-		tail inspect watch-services cleanup force-clean deploy-policies register-pattern post-register
+		tail inspect watch-services cleanup force-clean register-pattern post-register
 
-all: publish publish-patterns deploy-policies
+all: publish publish-patterns
 
 publish: $(SUBPROJECTS:%=publish-%)
 
 publish-patterns: $(PATTERNS:%=publish-pattern-%)
 
 $(SUBPROJECTS:%=publish-%): publish-% :
-	$(MAKE) -C "src/$*" publish-service
+	$(MAKE) -C "src/$*" publish-service deploy-policy
 
 $(SUBPROJECTS:%=print-%): print-% :
 	$(MAKE) -C "src/$*" print-service
@@ -93,12 +88,6 @@ post-register:
 
 watch-agreements:
 	watch -n $(n) hzn agreement list
-
-# register all deploy policies with the hzn exchange server
-deploy-policies: $(DEPLOY_POLICIES:%=deploy-policy-%.json)
-
-$(DEPLOY_POLICIES:%=deploy-policy-%.json): deploy-policy-%.json :
-	hzn exchange deployment addpolicy --json-file=horizon/$@ deploy-policy-$*-${EDGE_OWNER}.${EDGE_DEPLOY}-${ARCH}
 
 $(BUILD_DIR):
 	mkdir -p "$@"

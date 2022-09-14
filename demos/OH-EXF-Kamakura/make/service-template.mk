@@ -41,7 +41,7 @@ print-service: $(SERVICE_JSON_OUTPUT)
 # Only add a deploy policy if one is specified in "service.policy.json"
 deploy-policy:
 ifneq ("$(wildcard service.policy.json)","")
-	hzn exchange deployment addpolicy -f service.policy.json deploy_$(EDGE_OWNER).$(EDGE_DEPLOY).$(IMAGE_NAME)_$(ARCH)
+	hzn exchange deployment addpolicy -f service.policy.json deploy-$(SERVICE_URL)-$(ARCH)
 endif
 
 $(BUILD_DIR):
