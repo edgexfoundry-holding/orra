@@ -10,6 +10,6 @@ src/model-data/src
 src/model-data/models
 
 build/
-env.mk
+.env
 user-input.json
 !horizon/user-input.json

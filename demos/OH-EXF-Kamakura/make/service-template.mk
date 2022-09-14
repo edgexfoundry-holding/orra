@@ -26,7 +26,7 @@ BUILD_DIR = ../../build
 SERVICE_JSON_INPUT = service.definition.json
 SERVICE_JSON_OUTPUT = $(BUILD_DIR)/$(SERVICE_NAME).service.json
 
-.PHONY: all publish-service deploy-policy print-service
+.PHONY: all publish-service deploy-policy print-service login
 
 all: publish-service deploy-policy
 
@@ -50,5 +50,9 @@ $(BUILD_DIR):
 # remove comments from json files (any line starting with 0 or more spaces followed by //)
 $(SERVICE_JSON_OUTPUT): $(SERVICE_JSON_INPUT) | $(BUILD_DIR)
 	sed -E 's|^\s*//.*||g' "$(SERVICE_JSON_INPUT)" > "$@"
+
+# stream the password to docker login via an auto-closing temporary named pipe
+login:
+	$(if $(LOCAL_DOCKER_USERNAME),docker login -u $(LOCAL_DOCKER_USERNAME) --password-stdin $(DOCKER_REGISTRY) < <(set +x; echo "$${LOCAL_DOCKER_API_KEY_RW_PUSH}"),)
 
 endif # SERVICE_TEMPLATE_MK_DEFINED

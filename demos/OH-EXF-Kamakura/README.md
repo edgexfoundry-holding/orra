@@ -13,7 +13,19 @@ export HZN_ORG_ID=<org_id>
 export HZN_EXCHANGE_USER_AUTH=iamapikey:<your-iamapikey>
 export APP_BIND_HORIZON_DIR=/var/local/horizon
 # This is the docker registry/account where locally-built images are pushed to
-export LOCAL_DOCKER_REGISTRY=<your-docker-registry-base>
+export LOCAL_DOCKER_REGISTRY=<localhost:5000>
+```
+
+The following optional environment variables can be set to enable authenticated access
+```shell
+# Org to push local-built images to. This will be appended to LOCAL_DOCKER_REGISTRY
+export LOCAL_DOCKER_ORG=<ieam-edgex>
+# Username to authenticate to LOCAL_DOCKER_REGISTRY
+export LOCAL_DOCKER_USERNAME=<username>
+# API key for LOCAL_DOCKER_USERNAME with RW access
+export LOCAL_DOCKER_API_KEY_RW_PUSH=<read-write api-key>
+# API key for LOCAL_DOCKER_USERNAME with RO access
+export LOCAL_DOCKER_API_KEY_RO_PULL=<read only api key>
 ```
 
 ### Versions

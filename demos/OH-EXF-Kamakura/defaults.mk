@@ -4,8 +4,18 @@
 # Docker registry for locally built images
 # this can be overridden to use your own registry
 export LOCAL_DOCKER_REGISTRY ?= localhost:5000
+# Org to push local-built images to. Can be left blank.
+export LOCAL_DOCKER_ORG ?=
 
-# Base docker registry to use for dependency services.
+# Username to authenticate to LOCAL_DOCKER_REGISTRY
+export LOCAL_DOCKER_USERNAME ?=
+# API key for LOCAL_DOCKER_USERNAME with RW access
+export LOCAL_DOCKER_API_KEY_RW_PUSH ?=
+# API key for LOCAL_DOCKER_USERNAME with RO access
+export LOCAL_DOCKER_API_KEY_RO_PULL ?= $(LOCAL_DOCKER_API_KEY_RW_PUSH)
+
+# Base docker registry to use for dependency services that are not
+# EdgeX or Locally built.
 # Leave blank to use the default registry (DockerHub)
 export DOCKER_REGISTRY ?=
 
