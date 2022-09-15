@@ -18,7 +18,8 @@
         "owner == ${EDGE_OWNER}",
         "deploy == ${EDGE_DEPLOY}",
         "${SERVICE_NAME} == true",
-        "openhorizon.arch == ${ARCH}"
+        "openhorizon.arch == ${ARCH}",
+        "openhorizon.allowPrivileged == true"
     ],
     "userInput": [
     ]

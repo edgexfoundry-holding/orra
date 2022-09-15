@@ -13,3 +13,5 @@ build/
 .env
 user-input.json
 !horizon/user-input.json
+node-policy.json
+!horizon/node-policy.json
