@@ -15,7 +15,7 @@ PATTERNS = edgex-kamakura-edge-video-analytics-management-app \
 		   edgex-kamakura \
 		   edge-video-analytics
 
-NODE_POLICY ?= horizon/node-policy.json
+NODE_POLICY ?= $(if $(wildcard node-policy.json),node-policy.json,horizon/node-policy.json)
 USER_INPUT ?= user-input.json
 
 # do not let it be run in parallel to ensure dependency order is preserved
