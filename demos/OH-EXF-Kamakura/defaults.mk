@@ -8,10 +8,13 @@ export LOCAL_DOCKER_REGISTRY ?= localhost:5000
 export LOCAL_DOCKER_ORG ?=
 
 # Username to authenticate to LOCAL_DOCKER_REGISTRY
+# NOTE: If LOCAL_DOCKER_USERNAME is defined, the code will assume you want to use authenticated access,
+#       and LOCAL_DOCKER_API_KEY_RW_PUSH and LOCAL_DOCKER_API_KEY_RO_PULL _must_ be defined as well!
 export LOCAL_DOCKER_USERNAME ?=
-# API key for LOCAL_DOCKER_USERNAME with RW access
+# API key for user LOCAL_DOCKER_USERNAME with RW access to LOCAL_DOCKER_REGISTRY
 export LOCAL_DOCKER_API_KEY_RW_PUSH ?=
-# API key for LOCAL_DOCKER_USERNAME with RO access
+# API key for user LOCAL_DOCKER_USERNAME with RO access to LOCAL_DOCKER_REGISTRY
+# NOTE: This can be the same or different from the RW_PUSH key
 export LOCAL_DOCKER_API_KEY_RO_PULL ?= $(LOCAL_DOCKER_API_KEY_RW_PUSH)
 
 # Base docker registry to use for dependency services that are not
