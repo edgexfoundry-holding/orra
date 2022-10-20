@@ -1,0 +1,26 @@
+{
+    "label": "deploy-${SERVICE_URL}-${ARCH}",
+    "description": "A deploy policy for ${SERVICE_NAME} ${ARCH}",
+    "service": {
+        "name": "${SERVICE_URL}",
+        "org": "${HZN_ORG_ID}",
+        "arch": "${ARCH}",
+        "serviceVersions": [
+            {
+                "version": "${SERVICE_VERSION}",
+                "priority": {}
+            }
+        ]
+    },
+    "properties": [
+    ],
+    "constraints": [
+        "owner == ${EDGE_OWNER}",
+        "deploy == ${EDGE_DEPLOY}",
+        "${SERVICE_NAME} == true",
+        "openhorizon.arch == ${ARCH}",
+        "openhorizon.allowPrivileged == true"
+    ],
+    "userInput": [
+    ]
+}

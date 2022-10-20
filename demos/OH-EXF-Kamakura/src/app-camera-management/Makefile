@@ -6,22 +6,22 @@ include ../../make/base.mk
 
 # Define and export service specific variables
 export VERSION_SUFFIX=-dev
-export DOCKER_REGISTRY_BASE=$(LOCAL_DOCKER_REGISTRY:%=%/)
-export DOCKER_ORG=$(DOCKER_EDGEX_ORG)
+export DOCKER_REGISTRY=$(LOCAL_DOCKER_REGISTRY)
+export DOCKER_ORG=$(LOCAL_DOCKER_ORG)
 
 # Include service template file
 include ../../make/service-template.mk
 
 .PHONY: build push clean
 
-publish-service: build push $(SERVICE_JSON_OUTPUT)
-	hzn exchange service publish -O -f "$(SERVICE_JSON_OUTPUT)" --pull-image
+publish-service: build push $(SERVICE_JSON_OUTPUT) login
+	hzn exchange service publish -O -f "$(SERVICE_JSON_OUTPUT)" --pull-image $(if $(LOCAL_DOCKER_USERNAME),-r "$(DOCKER_REGISTRY):$(LOCAL_DOCKER_USERNAME):$${LOCAL_DOCKER_API_KEY_RO_PULL}",)
 
 build: src
 	@echo "building docker image..."
 	$(MAKE) -C src/application-services/custom/camera-management docker
 
-push: build
+push: build login
 	@echo "tagging docker image..."
 	docker tag "edgexfoundry/$(IMAGE_NAME):$(DOCKER_IMAGE_VERSION)" "$(DOCKER_FULL_IMAGE_NAME)"
 	@echo "pushing docker image..."

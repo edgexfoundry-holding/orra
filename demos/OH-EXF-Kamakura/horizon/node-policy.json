@@ -1,8 +1,12 @@
 {
     "properties": [
-        {
-            "name": "openhorizon.allowPrivileged",
-            "value": true
-        }
+        { "name": "owner",  "value": "${EDGE_OWNER}" },
+        { "name": "deploy",  "value": "${EDGE_DEPLOY}" },
+        { "name": "asc-mqtt", "value": true },
+        { "name": "edgex-ui", "value": true },
+        { "name": "app-camera-management", "value": true },
+        { "name": "openhorizon.allowPrivileged", "value": true }
+    ],
+    "constraints": [
     ]
 }

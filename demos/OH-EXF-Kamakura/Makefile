@@ -15,7 +15,7 @@ PATTERNS = edgex-kamakura-edge-video-analytics-management-app \
 		   edgex-kamakura \
 		   edge-video-analytics
 
-NODE_POLICY ?= horizon/node-policy.json
+NODE_POLICY ?= $(if $(wildcard node-policy.json),node-policy.json,horizon/node-policy.json)
 USER_INPUT ?= user-input.json
 
 # do not let it be run in parallel to ensure dependency order is preserved
@@ -35,7 +35,7 @@ n ?= 0.1
 
 .PHONY: all publish $(SUBPROJECTS:%=publish-%) publish-patterns $(PATTERNS:%=publish-pattern-%) \
 		unregister register watch-agreements envsubst $(PATTERNS:%=print-pattern-%) $(SUBPROJECTS:%=print-%) \
-		tail inspect watch-services cleanup force-clean
+		tail inspect watch-services cleanup force-clean register-pattern post-register
 
 all: publish publish-patterns
 
@@ -44,7 +44,7 @@ publish: $(SUBPROJECTS:%=publish-%)
 publish-patterns: $(PATTERNS:%=publish-pattern-%)
 
 $(SUBPROJECTS:%=publish-%): publish-% :
-	$(MAKE) -C "src/$*" publish-service
+	$(MAKE) -C "src/$*" publish-service deploy-policy
 
 $(SUBPROJECTS:%=print-%): print-% :
 	$(MAKE) -C "src/$*" print-service
@@ -72,9 +72,17 @@ force-clean: cleanup
 	docker network prune -f
 
 register:
+	hzn register "$(addprefix --policy=,$(NODE_POLICY))" "$(addprefix --input-file=,$(USER_INPUT))"
+	$(MAKE) post-register
+
+# register with a specific pattern
+register-pattern:
 	$(call require_arg,p,$(word 1,$(PATTERNS)))
 	hzn register -p "pattern-$(EDGE_OWNER).$(EDGE_DEPLOY).$(p)-$(VERSION_PATTERN_$(subst -,_,$(p)))" \
 		"$(addprefix --policy=,$(NODE_POLICY))" "$(addprefix --input-file=,$(USER_INPUT))"
+	$(MAKE) post-register
+
+post-register:
 	sudo mkdir -p "$(APP_BIND_HORIZON_DIR)"
 	sudo chmod 777 "$(APP_BIND_HORIZON_DIR)"
 
